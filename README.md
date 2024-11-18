@@ -9,7 +9,6 @@
 - [Fitur](#fitur)
 - [Kebutuhan Sistem](#kebutuhan-sistem)
 - [Struktur Data](#struktur-data)
-- [Instalasi](#instalasi)
 - [Penggunaan](#penggunaan)
 - [Tangkapan Layar](#tangkapan-layar)
 - [Kontribusi](#kontribusi)
@@ -73,28 +72,6 @@ Multilist
 |---------|----------|---------|
 | Nota | 1:N | Item Menu |
 | Nota | 1:1 | Nota Gabungan |
-
-## 🚀 Instalasi
-
-1. Klon repositori
-```bash
-git clone https://github.com/username/sistem-la-grande.git
-```
-
-2. Masuk ke direktori proyek
-```bash
-cd sistem-la-grande
-```
-
-3. Kompilasi program
-```bash
-gcc -o restoran main.c
-```
-
-4. Jalankan aplikasi
-```bash
-./restoran
-```
 
 ## 🎮 Penggunaan
 
