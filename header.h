@@ -81,7 +81,7 @@ void printNota(AddressParent nota); // GENERAL.C
 void printAllNota(Multilist L); // GENERAL.C
 
 // FUNGSI BONUS (FILE HANDLING)
-void saveToFile(Multilist L, string filename); // FILEHANDLER.C
+void saveToFile(Multilist L); // FILEHANDLER.C
 void loadFromFile(Multilist *L, string filename); // FILEHANDLER.C
 
 // FUNGSI HELPER

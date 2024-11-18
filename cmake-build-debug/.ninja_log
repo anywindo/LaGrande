@@ -1,0 +1,11 @@
+# ninja log v6
+8	750	1731932211781088543	CMakeFiles/LaGrande.dir/nota.c.o	b4dc24702f66e76e
+7	751	1731932211780017975	CMakeFiles/LaGrande.dir/main.c.o	8ce93a7ed21e762b
+7	751	1731932211780544136	CMakeFiles/LaGrande.dir/general.c.o	df555af0647531cd
+8	752	1731932211781374885	CMakeFiles/LaGrande.dir/helper.c.o	cfbc99c25953a5c3
+9	752	1731932211781631240	CMakeFiles/LaGrande.dir/filehandler.c.o	fb2e0f2cb3d8e584
+8	780	1731932211780833679	CMakeFiles/LaGrande.dir/modification.c.o	92a3ab4a4afc8a5e
+780	1155	1731932212553117341	LaGrande	f9250803f0e492f1
+4	449	1731935380911931251	CMakeFiles/LaGrande.dir/general.c.o	df555af0647531cd
+3	155	1731935424594485067	CMakeFiles/LaGrande.dir/filehandler.c.o	fb2e0f2cb3d8e584
+155	586	1731935424746641485	LaGrande	f9250803f0e492f1
