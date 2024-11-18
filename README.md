@@ -1,164 +1,212 @@
-# 🍽️ La Grande Restaurant Management System
+# 🍽️ Sistem Manajemen Restoran La Grande
 
-![Restaurant Management](https://img.shields.io/badge/Restaurant-Management-orange)
-![Version](https://img.shields.io/badge/Version-1.0-blue)
-![License](https://img.shields.io/badge/License-MIT-green)
+![Manajemen Restoran](https://img.shields.io/badge/Manajemen-Restoran-orange)
+![Versi](https://img.shields.io/badge/Versi-1.0-blue)
+![Lisensi](https://img.shields.io/badge/Lisensi-MIT-green)
 
-## 📋 Table of Contents
-- [Overview](#overview)
-- [Features](#features)
-- [System Requirements](#system-requirements)
-- [Data Structure](#data-structure)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Screenshots](#screenshots)
-- [Contributing](#contributing)
-- [License](#license)
+## 📋 Daftar Isi
+- [Ringkasan](#ringkasan)
+- [Fitur](#fitur)
+- [Kebutuhan Sistem](#kebutuhan-sistem)
+- [Struktur Data](#struktur-data)
+- [Instalasi](#instalasi)
+- [Penggunaan](#penggunaan)
+- [Tangkapan Layar](#tangkapan-layar)
+- [Kontribusi](#kontribusi)
+- [Lisensi](#lisensi)
 
-## 🎯 Overview
-La Grande Restaurant Management System is a comprehensive solution designed to streamline restaurant operations, from order management to financial reporting. Built using a multilist data structure, this system efficiently handles multiple concurrent orders while maintaining data integrity.
+## 🎯 Ringkasan
+Sistem Manajemen Restoran La Grande adalah solusi lengkap yang dirancang untuk mengoptimalkan operasional restoran, mulai dari manajemen pesanan hingga pelaporan keuangan. Dibangun menggunakan struktur data multilist, sistem ini mampu menangani beberapa pesanan secara bersamaan sambil menjaga integritas data.
 
-## ⭐ Features
+## ⭐ Fitur
 
-### 🧾 Order Management
-- Create new orders with table assignments
-- Add/modify menu items in existing orders
-- Real-time order tracking
-- Print order receipts
+### 🧾 Manajemen Pesanan
+- Membuat pesanan baru dengan penugasan meja
+- Menambah/mengubah item menu dalam pesanan
+- Pelacakan pesanan secara langsung
+- Mencetak struk pesanan
 
-### 💳 Payment Processing
-- **Merge Orders**: Combine multiple orders for group payments
-- **Split Bills**: Divide a single order into multiple bills
-- Secure payment validation
-- Change calculation
+### 💳 Pemrosesan Pembayaran
+- **Gabung Nota**: Menggabungkan beberapa nota untuk pembayaran kelompok
+- **Pisah Nota**: Membagi satu nota menjadi beberapa tagihan
+- Validasi pembayaran yang aman
+- Perhitungan kembalian
 
-### 📊 Reporting
-- Daily revenue tracking
-- Most popular menu items analysis
-- Sales trends visualization
-- Custom period reports
+### 📊 Pelaporan
+- Pelacakan pendapatan harian
+- Analisis item menu terpopuler
+- Visualisasi tren penjualan
+- Laporan periode kustom
 
-### 💾 Data Persistence
-- Auto-save functionality
-- Data backup and restore
-- Export reports to files
+### 💾 Penyimpanan Data
+- Fungsi simpan otomatis
+- Backup dan pemulihan data
+- Ekspor laporan ke file
 
-## 🖥️ System Requirements
-- C Compiler (GCC recommended)
-- Minimum 2GB RAM
-- 100MB free disk space
+## 🖥️ Kebutuhan Sistem
+- Kompiler C (Disarankan GCC)
+- Minimum RAM 2GB
+- Ruang disk kosong 100MB
 - Terminal/Command Prompt
 
-## 🏗️ Data Structure
+## 🏗️ Struktur Data
 
-### Main Components
+### Komponen Utama
 ```
 Multilist
-└── Order (Parent)
-    ├── Order Details
-    │   ├── Order Number
-    │   ├── Date
-    │   ├── Table Number
-    │   └── Total Amount
+└── Nota (Parent)
+    ├── Detail Nota
+    │   ├── Nomor Nota
+    │   ├── Tanggal
+    │   ├── Nomor Meja
+    │   └── Total Pembelian
     │
-    └── Menu Items (Child)
-        ├── Item Name
-        ├── Quantity
-        ├── Price
+    └── Item Menu (Child)
+        ├── Nama Item
+        ├── Jumlah
+        ├── Harga
         └── Subtotal
 ```
 
-### Key Relationships
-| Entity | Relationship | Entity |
-|--------|-------------|--------|
-| Order | 1:N | Menu Items |
-| Order | 1:1 | Merged Order |
+### Hubungan Utama
+| Entitas | Hubungan | Entitas |
+|---------|----------|---------|
+| Nota | 1:N | Item Menu |
+| Nota | 1:1 | Nota Gabungan |
 
-## 🚀 Installation
+## 🚀 Instalasi
 
-1. Clone the repository
+1. Klon repositori
 ```bash
-git clone https://github.com/username/la-grande-system.git
+git clone https://github.com/username/sistem-la-grande.git
 ```
 
-2. Navigate to project directory
+2. Masuk ke direktori proyek
 ```bash
-cd la-grande-system
+cd sistem-la-grande
 ```
 
-3. Compile the program
+3. Kompilasi program
 ```bash
-gcc -o restaurant main.c
+gcc -o restoran main.c
 ```
 
-4. Run the application
+4. Jalankan aplikasi
 ```bash
-./restaurant
+./restoran
 ```
 
-## 🎮 Usage
+## 🎮 Penggunaan
 
-### Creating a New Order
+### Membuat Nota Baru
 ```c
-DataParent orderData = makeDataParent(1, "2024-03-18", 5);
-insertFirstParent(&restaurantSystem, orderData);
+DataParent dataNota = makeDataParent(1, "18-03-2024", 5);
+insertFirstParent(&sistemRestoran, dataNota);
 ```
 
-### Adding Menu Items
+### Menambah Item Menu
 ```c
-DataChild itemData = makeDataChild("Pasta Carbonara", 2, 15.99);
-insertLastChild(restaurantSystem, 1, itemData);
+DataChild dataItem = makeDataChild("Pasta Carbonara", 2, 15.99);
+insertLastChild(sistemRestoran, 1, dataItem);
 ```
 
-### Processing Payment
+### Memproses Pembayaran
 ```c
-prosesPayment(&restaurantSystem, orderNumber, paymentAmount);
+prosesPayment(&sistemRestoran, nomorNota, jumlahBayar);
 ```
 
-## 📸 Screenshots
+## 📸 Tangkapan Layar
 
 <details>
-<summary>Click to view screenshots</summary>
+<summary>Klik untuk melihat tangkapan layar</summary>
 
-### Main Menu
+### Menu Utama
 ```
-===== La Grande Restaurant =====
-1. Create New Order
-2. Add Menu Items
-3. Process Payment
-4. View Reports
-5. Exit
+===== Restoran La Grande =====
+1. Buat Nota Baru
+2. Tambah Item Menu
+3. Proses Pembayaran
+4. Lihat Laporan
+5. Keluar
 ```
 
-### Order Management
+### Manajemen Nota
 ```
-Order #1234
-Table: 5
-Items:
-- 2x Pasta Carbonara   $31.98
-- 1x Caesar Salad      $12.99
-Total: $44.97
+Nota #1234
+Meja: 5
+Item:
+- 2x Pasta Carbonara   Rp159.900
+- 1x Caesar Salad      Rp129.900
+Total: Rp289.800
 ```
 </details>
 
-## 🤝 Contributing
-We welcome contributions! Please follow these steps:
+## 🤝 Kontribusi
+Kami menyambut kontribusi! Silakan ikuti langkah-langkah berikut:
 
-1. Fork the repository
-2. Create your feature branch
-3. Commit your changes
-4. Push to the branch
-5. Create a Pull Request
+1. Fork repositori
+2. Buat branch fitur Anda
+3. Commit perubahan Anda
+4. Push ke branch
+5. Buat Pull Request
 
-## 📄 License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+## 📄 Lisensi
+Proyek ini dilisensikan di bawah Lisensi MIT - lihat file [LISENSI](LISENSI) untuk detail.
 
 ---
 
 <div align="center">
 
-Made with ❤️ by LaGrande Team
+Dibuat dengan ❤️ oleh La Grenade team
 
-📧 Contact: admin@lagranade.com
+📧 Kontak: coder@lagrande.com
+
+</div>
 
 ---
+
+### 📚 Dokumentasi Tambahan
+
+#### Struktur Tabel Data
+
+1. Data Item Menu (DataChild)
+| Variabel   | Tipe Data |
+|------------|-----------|
+| namaItem   | string    |
+| jumlah     | int       |
+| harga      | float     |
+| subtotal   | float     |
+
+2. Data Nota (DataParent)
+| Variabel        | Tipe Data |
+|-----------------|-----------|
+| nomorNota       | int       |
+| tanggal         | string    |
+| nomorMeja       | int       |
+| totalPembelian  | float     |
+
+3. Node Item Menu (NodeChild)
+| Variabel    | Tipe Data    |
+|-------------|--------------|
+| dataChild   | DataChild    |
+| next        | AddressChild |
+
+4. Node Nota (NodeParent)
+| Variabel     | Tipe Data     |
+|--------------|---------------|
+| dataParent   | DataParent    |
+| next         | AddressParent |
+| firstChild   | AddressChild  |
+| merged       | AddressParent |
+
+5. Multilist
+| Variabel     | Tipe Data     |
+|--------------|---------------|
+| firstParent  | AddressParent |
+
+#### Definisi Tipe
+| Definisi Tipe  | Tipe Dasar |
+|----------------|------------|
+| string         | char[50]   |
+| AddressChild   | NodeChild* |
+| AddressParent  | NodeParent*|
