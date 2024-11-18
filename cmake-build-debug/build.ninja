@@ -55,8 +55,32 @@ build CMakeFiles/LaGrande.dir/main.c.o: C_COMPILER__LaGrande_unscanned_Debug /Us
   OBJECT_DIR = CMakeFiles/LaGrande.dir
   OBJECT_FILE_DIR = CMakeFiles/LaGrande.dir
 
-build CMakeFiles/LaGrande.dir/sourceA.c.o: C_COMPILER__LaGrande_unscanned_Debug /Users/arw/Documents/GitHub/LaGrande/sourceA.c || cmake_object_order_depends_target_LaGrande
-  DEP_FILE = CMakeFiles/LaGrande.dir/sourceA.c.o.d
+build CMakeFiles/LaGrande.dir/general.c.o: C_COMPILER__LaGrande_unscanned_Debug /Users/arw/Documents/GitHub/LaGrande/general.c || cmake_object_order_depends_target_LaGrande
+  DEP_FILE = CMakeFiles/LaGrande.dir/general.c.o.d
+  FLAGS = -g -std=gnu11 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.0.sdk -fcolor-diagnostics
+  OBJECT_DIR = CMakeFiles/LaGrande.dir
+  OBJECT_FILE_DIR = CMakeFiles/LaGrande.dir
+
+build CMakeFiles/LaGrande.dir/modification.c.o: C_COMPILER__LaGrande_unscanned_Debug /Users/arw/Documents/GitHub/LaGrande/modification.c || cmake_object_order_depends_target_LaGrande
+  DEP_FILE = CMakeFiles/LaGrande.dir/modification.c.o.d
+  FLAGS = -g -std=gnu11 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.0.sdk -fcolor-diagnostics
+  OBJECT_DIR = CMakeFiles/LaGrande.dir
+  OBJECT_FILE_DIR = CMakeFiles/LaGrande.dir
+
+build CMakeFiles/LaGrande.dir/nota.c.o: C_COMPILER__LaGrande_unscanned_Debug /Users/arw/Documents/GitHub/LaGrande/nota.c || cmake_object_order_depends_target_LaGrande
+  DEP_FILE = CMakeFiles/LaGrande.dir/nota.c.o.d
+  FLAGS = -g -std=gnu11 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.0.sdk -fcolor-diagnostics
+  OBJECT_DIR = CMakeFiles/LaGrande.dir
+  OBJECT_FILE_DIR = CMakeFiles/LaGrande.dir
+
+build CMakeFiles/LaGrande.dir/helper.c.o: C_COMPILER__LaGrande_unscanned_Debug /Users/arw/Documents/GitHub/LaGrande/helper.c || cmake_object_order_depends_target_LaGrande
+  DEP_FILE = CMakeFiles/LaGrande.dir/helper.c.o.d
+  FLAGS = -g -std=gnu11 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.0.sdk -fcolor-diagnostics
+  OBJECT_DIR = CMakeFiles/LaGrande.dir
+  OBJECT_FILE_DIR = CMakeFiles/LaGrande.dir
+
+build CMakeFiles/LaGrande.dir/filehandler.c.o: C_COMPILER__LaGrande_unscanned_Debug /Users/arw/Documents/GitHub/LaGrande/filehandler.c || cmake_object_order_depends_target_LaGrande
+  DEP_FILE = CMakeFiles/LaGrande.dir/filehandler.c.o.d
   FLAGS = -g -std=gnu11 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.0.sdk -fcolor-diagnostics
   OBJECT_DIR = CMakeFiles/LaGrande.dir
   OBJECT_FILE_DIR = CMakeFiles/LaGrande.dir
@@ -69,7 +93,7 @@ build CMakeFiles/LaGrande.dir/sourceA.c.o: C_COMPILER__LaGrande_unscanned_Debug 
 #############################################
 # Link the executable LaGrande
 
-build LaGrande: C_EXECUTABLE_LINKER__LaGrande_Debug CMakeFiles/LaGrande.dir/main.c.o CMakeFiles/LaGrande.dir/sourceA.c.o
+build LaGrande: C_EXECUTABLE_LINKER__LaGrande_Debug CMakeFiles/LaGrande.dir/main.c.o CMakeFiles/LaGrande.dir/general.c.o CMakeFiles/LaGrande.dir/modification.c.o CMakeFiles/LaGrande.dir/nota.c.o CMakeFiles/LaGrande.dir/helper.c.o CMakeFiles/LaGrande.dir/filehandler.c.o
   FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.0.sdk
   OBJECT_DIR = CMakeFiles/LaGrande.dir
   POST_BUILD = :

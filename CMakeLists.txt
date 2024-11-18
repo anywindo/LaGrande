@@ -5,4 +5,8 @@ set(CMAKE_C_STANDARD 11)
 
 add_executable(LaGrande main.c
         header.h
-        sourceA.c)
+        general.c
+        modification.c
+        nota.c
+        helper.c
+        filehandler.c)
