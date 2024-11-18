@@ -146,7 +146,7 @@ Dibuat dengan ❤️ oleh La Grenade team
 
 #### Struktur Tabel Data
 
-1. Data Item Menu (DataChild)
+Data Item Menu (DataChild)
 | Variabel   | Tipe Data |
 |------------|-----------|
 | namaItem   | string    |
@@ -154,36 +154,10 @@ Dibuat dengan ❤️ oleh La Grenade team
 | harga      | float     |
 | subtotal   | float     |
 
-2. Data Nota (DataParent)
+Data Nota (DataParent)
 | Variabel        | Tipe Data |
 |-----------------|-----------|
 | nomorNota       | int       |
 | tanggal         | string    |
 | nomorMeja       | int       |
 | totalPembelian  | float     |
-
-3. Node Item Menu (NodeChild)
-| Variabel    | Tipe Data    |
-|-------------|--------------|
-| dataChild   | DataChild    |
-| next        | AddressChild |
-
-4. Node Nota (NodeParent)
-| Variabel     | Tipe Data     |
-|--------------|---------------|
-| dataParent   | DataParent    |
-| next         | AddressParent |
-| firstChild   | AddressChild  |
-| merged       | AddressParent |
-
-5. Multilist
-| Variabel     | Tipe Data     |
-|--------------|---------------|
-| firstParent  | AddressParent |
-
-#### Definisi Tipe
-| Definisi Tipe  | Tipe Dasar |
-|----------------|------------|
-| string         | char[50]   |
-| AddressChild   | NodeChild* |
-| AddressParent  | NodeParent*|
