@@ -1,7 +1,3 @@
-//
-// Created by Arwindo Pratama on 18/11/24.
-//
-
 #ifndef LAGRANDE_HEADER_H
 #define LAGRANDE_HEADER_H
 
