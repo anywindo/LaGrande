@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
+#include <time.h>
 
 // DATA TYPES
 typedef char string[100];
@@ -92,5 +93,6 @@ void moveAllItems(AddressParent source, AddressParent destination); // HELPER.C
 
 // FUNGSI UI
 void logoASCII(); // GENERAL.C
+void getLocalTime(int *day, int *month, int *year); // GENERAL.C
 
 #endif //LAGRANDE_HEADER_H

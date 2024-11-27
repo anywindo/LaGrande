@@ -10,4 +10,5 @@ add_executable(LaGrande main.c
         nota.c
         helper.c
         filehandler.c
-        login.h)
+        login.h
+        input.h)
