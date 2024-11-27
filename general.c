@@ -2,7 +2,16 @@
 
 void showMenu(char *picker, string user) {
     printf("\n [User: %s]\n", user);
-    printf("\n >> "); *picker = getchar();
+    logoASCII();
+    printf("\n\t\t---[ La Grande Restaurant POS System ]---\n");
+    printf("\n\t[]. ");
+    printf("\n\t[]. ");
+    printf("\n\t[]. ");
+    printf("\n\t[]. ");
+    printf("\n\t[]. \n");
+    printf("\n\t[0]. Logout dari %s", user);
+    printf("\n\t[Q]. Keluar aplikasi\n");
+    printf("\n\t>> "); *picker = getchar();
 }
 
 void printNota(AddressParent nota) {

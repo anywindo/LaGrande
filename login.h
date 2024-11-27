@@ -8,6 +8,7 @@
 #define DATA_FILE "userdata.txt"
 
 char userLogged[MAX_USERNAME];
+bool adminAsUser = false;
 
 void registerUser();
 void loginUser();
@@ -61,16 +62,17 @@ void loginUser() {
         system("cls");
         printf("\n [PAGE: Login User] - [Attempt: %d]\n", attempts);
         logoASCII();
-        printf("\n [>] Masukkan username: ");
-        fflush(stdin); gets(username);
+        printf("\n [>] Masukkan username: "); fflush(stdin); gets(username);
         trimNewline(username);
 
-        printf(" [>] Masukkan password: ");
-        fflush(stdin); gets(password);
+        printf(" [>] Masukkan password: "); fflush(stdin); gets(password);
         trimNewline(password);
 
         if (validateCredentials(username, password) && strcmp(username, "admin") == 0) {
+            strcpy(userLogged, username);
             adminManagement();
+            if(adminAsUser)
+                return;
         } else if (validateCredentials(username, password)) {
             strcpy(userLogged, username);
             printf("\n\t[*] Login berhasil! Selamat datang, %s.\n", username);
@@ -116,10 +118,11 @@ void adminManagement(){
     do {
         system("cls");
         printf("\n [PAGE: Admin Management] - [User: admin]\n");
-        printf("\n\t--- Management Kasir ---\n");
+        printf("\n\t--- POS Management ---\n");
         printf("\n [1]. Tampilkan semua user");
         printf("\n [2]. Tambahkan user baru");
         printf("\n [3]. Hapus user\n");
+        printf("\n [4]. Admin sebagai kasir");
         printf("\n [0]. Logout\n");
         printf("\n >> "); scanf("%d", &menu);
 
@@ -133,6 +136,9 @@ void adminManagement(){
             case 3:
                 deleteUser();
                 break;
+            case 4:
+                adminAsUser = true;
+                return;
             case 0:
                 printf("\n\t[*] Exiting admin session...\n");
                 break;
