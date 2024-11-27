@@ -50,7 +50,7 @@ typedef struct {
 // DEKLARASI FUNGSI UTAMA
 void createEmpty(Multilist *L); // MODIFICATION.C
 bool isEmpty(Multilist L); // MODIFICATION.C
-void showMenu(int *picker); // GENERAL.C
+void showMenu(char *picker, string user); // GENERAL.C
 
 // DEKLARASI FUNGSI PARENT (NOTA)
 DataParent makeDataParent(int nomor, string tanggal, int meja); // MODIFICATION.C
@@ -89,5 +89,8 @@ void updateTotalPembelian(AddressParent nota); // HELPER.C
 bool isNotaLunas(AddressParent nota); // HELPER.C
 AddressChild findChild(AddressParent nota, string namaItem); // HELPER.C
 void moveAllItems(AddressParent source, AddressParent destination); // HELPER.C
+
+// FUNGSI UI
+void logoASCII(); // GENERAL.C
 
 #endif //LAGRANDE_HEADER_H
