@@ -29,7 +29,7 @@ IncludeVersionInfo=0
 SupportXPThemes=0
 CompilerSet=0
 CompilerSettings=0000000000000000000000000
-UnitCount=11
+UnitCount=7
 
 [VersionInfo]
 Major=1
@@ -60,27 +60,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit2]
-FileName=filehandler.c
-CompileCpp=0
-Folder=
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
 [Unit3]
-FileName=general.c
-CompileCpp=0
-Folder=
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit4]
 FileName=header.h
 CompileCpp=0
 Folder=
@@ -91,7 +71,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit5]
-FileName=helper.c
+FileName=login.h
 CompileCpp=0
 Folder=
 Compile=1
@@ -101,7 +81,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit6]
-FileName=input.h
+FileName=source.c
 CompileCpp=0
 Folder=
 Compile=1
@@ -111,16 +91,6 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit8]
-FileName=modification.c
-CompileCpp=0
-Folder=
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit9]
 FileName=nota.c
 CompileCpp=0
 Folder=
@@ -141,7 +111,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit7]
-FileName=login.h
+FileName=nota.c
 CompileCpp=0
 Folder=
 Compile=1
@@ -155,6 +125,26 @@ FileName=userdata.txt
 Folder=
 Compile=0
 Link=0
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit2]
+FileName=general.c
+CompileCpp=0
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit4]
+FileName=menu.c
+CompileCpp=0
+Folder=
+Compile=1
+Link=1
 Priority=1000
 OverrideBuildCmd=0
 BuildCmd=

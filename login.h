@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "header.h"
 
+// ADT LOGIN ---------------------------------------------------------------------------------------------------
 #define MAX_USERNAME 50
 #define MAX_PASSWORD 50
 #define DATA_FILE "userdata.txt"
@@ -17,8 +17,8 @@ void viewUsers();
 void deleteUser();
 int validateCredentials(char *username, char *password);
 void trimNewline(char *str);
+// END ADT LOGIN -----------------------------------------------------------------------------------------------
 
-// Function to trim newline character from strings
 void trimNewline(char *str) {
     size_t len = strlen(str);
     if (len > 0 && str[len - 1] == '\n') {
@@ -26,7 +26,6 @@ void trimNewline(char *str) {
     }
 }
 
-// Function to register a new user
 void registerUser() {
     printf("\n [PAGE: Registrasi User]\n");
     char username[MAX_USERNAME];
@@ -52,7 +51,6 @@ void registerUser() {
     printf("\n\t[+] Sukses menambahkan user!\n");
 }
 
-// Function to log in a user
 void loginUser() {
     int attempts = 5;
     char username[MAX_USERNAME];
@@ -88,7 +86,6 @@ void loginUser() {
     exit(0);
 }
 
-// Function to validate user credentials
 int validateCredentials(char *username, char *password) {
     char fileUsername[MAX_USERNAME];
     char filePassword[MAX_PASSWORD];

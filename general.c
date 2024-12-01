@@ -18,7 +18,7 @@ void showMenu(char *picker, string user) { // ALEX
 }
 
 void printNota(AddressParent nota) {
-
+	
 }
 
 void printAllNota(Multilist L) {
