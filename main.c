@@ -25,38 +25,62 @@ int main(void) {
 
     // OUTER LOOP
     do{
+    	system("cls");
         printf("\n [Date: %02d-%02d-%04d]", day,month,year);
         showMenu(&menu, userLogged);
-        getchar();
+        
         switch (menu) {
-            case '1':
+        	// POS SYSTEM
+        	
+            case '1': // PESANAN BARU
                 inputPesanan(&Kasir, &Dapur, tanggal); // masih belom jadi;
-                break;
+            break;
 
+			case '2': // UPDATE
+            
+			break;
 
+			case '3': // PEMBAYARAN - SELESAI
+            
+			break;
 
+			case '4': // TOOLS - MERGE SPLIT
+            
+			break;
+			
+			// MANAGEMENT
+			
+			case '5': // PENGHASILAN
+				
+			break;
+			
+			case '6': // ANALYSIS
+				
+			break;
 
-
-
-
-            // IGNORE FOR NOW
+            // NAVIGATION
+        
             default: // IF NOT IN SWITCH
                 printf("\n\t[!] Menu tidak tersedia!");
-                break;
+            break;
+                
             case '0': // LOGOUT
-                printf("\n\t[>] Konfirmasi logout (y/n): "); confirm = getchar();
+                printf("\n\t[>] Konfirmasi logout (y/n): "); confirm = getch();
+                
                 if(confirm == 'y') goto login; // LOGOUT
                 else
                     printf("\n\t[*] Batal logout");
-                break;
+            break;
+                
             case 'Q': // QUIT
-                printf("\n\t[>] Konfirmasi keluar aplikasi (y/n): "); confirm = getchar();
+                printf("\n\t[>] Konfirmasi keluar aplikasi (y/n): "); confirm = getch();
+                
                 if(confirm == 'y') exit(1);
                 else
                     printf("\n\t[*] Batal keluar");
-                break;
+            break;
         }
-        getchar();
+    	getch();
     } while (1);
     return 0;
 }

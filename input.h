@@ -38,16 +38,19 @@ Menu minuman[] = {
 int getNomorNota();
 void saveCounter(int counter);
 int readCounter();
+void tampilkanMenu(Menu menu[], char *kategori, int n);
 void inputPesanan(Multilist *Kasir, Multilist *Dapur, string tanggal);
 
-void tampilkanMenu(Menu menu[], char *kategori)
+void tampilkanMenu(Menu menu[], char *kategori, int n)
 {
+	int i;
+	
     printf("\n\t=========================================\n");
     printf("\t           Menu %-10s          \n", kategori);
     printf("\t=========================================\n");
     printf("\t| %-3s | %-20s | %-8s |\n", "ID", "Nama", "Harga");
     printf("\t-----------------------------------------\n");
-    for (int i = 0; i < 7; i++) {
+    for (i = 0; i < n; i++) {
         printf("\t| %-3d | %-20s | Rp%-6d |\n", menu[i].id, menu[i].nama, menu[i].harga);
     }
     printf("\t=========================================\n\n");

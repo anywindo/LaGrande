@@ -14,7 +14,7 @@ void showMenu(char *picker, string user) { // ALEX
     printf("\n\t\t---[ System ]---\n");
     printf("\n\t[0]. Logout dari %s", user);
     printf("\n\t[Q]. Keluar aplikasi\n");
-    printf("\n\t>> "); *picker = getchar();
+    printf("\n\t>> "); scanf(" %c", picker);
 }
 
 void printNota(AddressParent nota) {

@@ -81,7 +81,7 @@ void loginUser() {
             printf("\n\t[!] Username atau password salah!\n");
             attempts--;
         }
-        getchar();
+        getch();
     }
 
     printf("\n\t[!] Anda telah mencoba login sebanyak 5 kali. Program akan keluar.\n");
@@ -146,7 +146,7 @@ void adminManagement(){
                 printf("\n\t[!] Menu tidak ada!");
                 break;
         }
-        getchar();
+        getch();
     } while (menu != 0);
 }
 
