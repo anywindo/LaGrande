@@ -5,6 +5,7 @@
 #include <time.h>
 
 #define STATIC_FILE "statis.bin"
+#define JUMLAH_MEJA 20
 
 typedef struct{
 	float omset;
@@ -33,6 +34,7 @@ typedef struct DataParent {
     string tanggal;
     int nomorMeja;
     float totalPembelian;
+    bool status;
 } DataParent;
 
 // STRUKTUR NODE CHILD (ITEM PESANAN)

@@ -1,8 +1,34 @@
 #include "header.h"
+#define TABLE_COUNT 20
 
 void showMenu(char *picker, string user) { // ALEX
+	int activeTables[TABLE_COUNT] = {0};
+	int i,j;
+	
     printf("\n [User: %s]\n", user);
     logoASCII();
+    
+    printf("\n\t\t\t\t---[ Meja La Grande ]---\n");
+    for (i = 0; i < 4; i++) {
+        for (j = 0; j < 5; j++) {
+            int tableIndex = i * 5 + j; 
+            printf("\t");
+            printf("+---------+  ");
+        }
+        printf("\n");
+        for (j = 0; j < 5; j++) {
+            int tableIndex = i * 5 + j;
+            printf("\t");
+            printf("| Meja %02d |  ", tableIndex + 1);
+        }
+        printf("\n");
+        for (j = 0; j < 5; j++) {
+            printf("\t");
+            printf("+---------+  ");
+        }
+        printf("\n\n");
+    }
+
     printf("\n\t\t---[ La Grande Restaurant POS System ]---\n");
     printf("\n\t[1]. Pesanan Baru");
     printf("\n\t[2]. Update Nota");
@@ -31,11 +57,49 @@ void showTools(char *picker, string user) { // ALEX
 }
 
 void printNota(AddressParent nota) {
-	
+    if (nota != NULL) {
+        printf("\n\tNomor Nota: %03d", nota->dataParent.nomorNota);
+        printf("\n\tTanggal: %s", nota->dataParent.tanggal);
+        printf("\n\tNomor Meja: %d", nota->dataParent.nomorMeja);
+        printf("\n\tTotal Pembelian: Rp%.2f\n", nota->dataParent.totalPembelian);
+        
+        AddressChild currentChild = nota->firstChild;
+        while (currentChild != NULL) {
+            printf("\n\t\tNama Item: %s", currentChild->dataChild.namaItem);
+            printf("\n\t\tJumlah: %d", currentChild->dataChild.jumlah);
+            printf("\n\t\tHarga: Rp%.2f", currentChild->dataChild.harga);
+            printf("\n\t\tSubtotal: Rp%.2f", currentChild->dataChild.subtotal);
+            currentChild = currentChild->next;
+        }
+    } else {
+        printf("\n\tNota tidak ditemukan!\n");
+    }
 }
 
 void printAllNota(Multilist L) {
+    AddressParent current = L.firstParent;
+    if (current == NULL) {
+        printf("\n\tTidak ada nota yang tersedia.\n");
+        return;
+    }
 
+    while (current != NULL) {
+        printf("\n\tNomor Nota: %03d", current->dataParent.nomorNota);
+        printf("\n\tTanggal: %s", current->dataParent.tanggal);
+        printf("\n\tNomor Meja: %d", current->dataParent.nomorMeja);
+        printf("\n\tTotal Pembelian: Rp%.2f\n", current->dataParent.totalPembelian);
+        
+        AddressChild currentChild = current->firstChild;
+        while (currentChild != NULL) {
+            printf("\n\t\tNama Item: %s", currentChild->dataChild.namaItem);
+            printf("\n\t\tJumlah: %d", currentChild->dataChild.jumlah);
+            printf("\n\t\tHarga: Rp%.2f", currentChild->dataChild.harga);
+            printf("\n\t\tSubtotal: Rp%.2f", currentChild->dataChild.subtotal);
+            currentChild = currentChild->next;
+        }
+
+        current = current->next;
+    }
 }
 
 void logoASCII() { // ALEX

@@ -15,6 +15,7 @@ DataParent makeDataParent(int nomor, string tanggal, int meja) {
     strcpy(newData.tanggal, tanggal);
     newData.nomorMeja = meja;
     newData.totalPembelian = 0;
+    newData.status = true;
     return newData;
 }
 

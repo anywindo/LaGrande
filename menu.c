@@ -24,7 +24,10 @@ void inputPesanan(Multilist *Kasir, Multilist *Dapur, string tanggal){ // ALEX
 	int ID, jumlah;
 	float subtotal = 0;
     int nomorNota = getNomorNota();
-    int nomorMeja = rand() % 50; // BELOM NUNGGU PUTRI BUAT MEJA
+    
+    bool meja[JUMLAH_MEJA] = {false};
+    int nomorMeja = (rand() % JUMLAH_MEJA) + 1;
+    
 	AddressParent alamatNotaKasir,alamatNotaDapur;
     alamatNotaKasir = findParent(*Kasir, nomorNota);
     alamatNotaDapur = findParent(*Dapur, nomorNota);
