@@ -17,6 +17,19 @@ void showMenu(char *picker, string user) { // ALEX
     printf("\n\t>> "); scanf(" %c", picker);
 }
 
+void showTools(char *picker, string user) { // ALEX
+	printf("\n [User: %s]\n", user);
+	logoASCII();
+	
+	printf("\n\t\t---[ Tools ]---\n");
+	printf("\n\t[1]. Cari Nota");
+    printf("\n\t[2]. Lihat Semua Nota");
+    printf("\n\t[3]. Gabung Nota");
+    printf("\n\t[4]. Split Nota");
+    printf("\n\t[0]. Kembali\n");
+    printf("\n\t>> "); scanf(" %c", picker);
+}
+
 void printNota(AddressParent nota) {
 	
 }

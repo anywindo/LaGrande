@@ -4,6 +4,13 @@
 #include <stdbool.h>
 #include <time.h>
 
+#define STATIC_FILE "statis.bin"
+
+typedef struct{
+	float omset;
+	// STATISTIK LOAD DARI FILE
+} Statis;
+
 // ADT UTAMA ---------------------------------------------------------------------------------------------------
 
 // DATA TYPES
@@ -50,7 +57,6 @@ typedef struct {
 // DEKLARASI FUNGSI UTAMA
 void createEmpty(Multilist *L); // SOURCE.C
 bool isEmpty(Multilist L); // SOURCE.C
-void showMenu(char *picker, string user); // GENERAL.C
 
 // DEKLARASI FUNGSI PARENT (NOTA)
 DataParent makeDataParent(int nomor, string tanggal, int meja); // SOURCE.C
@@ -88,10 +94,14 @@ void printAllNota(Multilist L); // GENERAL.C
 // FUNGSI BONUS (FILE HANDLING)
 void saveToFile(Multilist L); // FILEHANDLER.C
 void loadFromFile(Multilist *L, string filename); // FILEHANDLER.C
+void saveStatis(Statis *data); // FILEHANDLER.C
+void loadStatis(Statis *data); // FILE HANDLER.C
 
 // FUNGSI UI
 void logoASCII(); // GENERAL.C
 void getLocalTime(int *day, int *month, int *year); // GENERAL.C
+void showMenu(char *picker, string user); // GENERAL.C
+void showTools(char *picker, string user); // GENERAL.C
 
 // END OF ADT UTAMA ---------------------------------------------------------------------------------------------
 
