@@ -1,7 +1,3 @@
-//
-// Created by Arwindo Pratama on 27/11/24.
-//
-
 #ifndef LAGRANDE_INPUT_H
 #define LAGRANDE_INPUT_H
 #include "header.h"
@@ -10,10 +6,9 @@
 typedef struct{
     int id;
     string nama;
-    int harga;
+    float harga;
 } Menu;
 
-// Daftar menu makanan
 Menu makanan[] = {
         {1, "Grilled Sandwich", 40900},
         {2, "Granola", 36800},
@@ -24,51 +19,75 @@ Menu makanan[] = {
         {7, "Signature Fried Rice", 45900}
 };
 
-// Daftar menu minuman
 Menu minuman[] = {
         {1, "Mineral Water", 10500},
         {2, "Signature Tea", 30900},
         {3, "Oolong Rain Tea", 25900},
         {4, "Me-Espresso", 37800},
         {5, "Mochalatte", 36900},
-        {6, "Lattearth", 37900}
+        {6, "Lattearth", 37900},
+        {7, "Koomboocha", 32900}
 };
 
 // DECLARE
 int getNomorNota();
 void saveCounter(int counter);
 int readCounter();
-void tampilkanMenu(Menu menu[], char *kategori, int n);
+void tampilkanMenu(Menu menu[], Menu minuman[]);
 void inputPesanan(Multilist *Kasir, Multilist *Dapur, string tanggal);
 
-void tampilkanMenu(Menu menu[], char *kategori, int n)
-{
-	int i;
-	
-    printf("\n\t=========================================\n");
-    printf("\t           Menu %-10s          \n", kategori);
-    printf("\t=========================================\n");
-    printf("\t| %-3s | %-20s | %-8s |\n", "ID", "Nama", "Harga");
-    printf("\t-----------------------------------------\n");
-    for (i = 0; i < n; i++) {
-        printf("\t| %-3d | %-20s | Rp%-6d |\n", menu[i].id, menu[i].nama, menu[i].harga);
+void tampilkanMenu(Menu makanan[], Menu minuman[]) {
+    int i;
+    
+    printf("\n =======================================================================================\n");
+    printf("| %-3s | %-20s | %-8s |    \t| %-3s | %-20s | %-8s |\n", 
+           "ID", "Nama Makanan", "Harga", "ID", "Nama Minuman", "Harga");
+    printf(" ---------------------------------------------------------------------------------------\n");
+    for (i = 0; i < 7; i++) {
+        printf("| %-3d | %-20s | Rp%-6d |    \t| %-3d | %-20s | Rp%-6d |\n", 
+               makanan[i].id, makanan[i].nama, makanan[i].harga, 
+               minuman[i].id, minuman[i].nama, minuman[i].harga);
     }
-    printf("\t=========================================\n\n");
+    printf(" =======================================================================================\n\n");
 }
 
+
 void inputPesanan(Multilist *Kasir, Multilist *Dapur, string tanggal){
+	int ID, jumlah;
+    int nomorNota = getNomorNota();
+    int nomorMeja = rand() % 50; // BELOM NUNGGU PUTRI BUAT MEJA
+	
     system("cls");
     printf("\n [Date: %s]\n", tanggal);
+    tampilkanMenu(makanan, minuman);
+    
     printf("\n\t\t---[ Pesanan Baru ]---\n");
-    int nomorNota = getNomorNota();
-    int nomorMeja = rand() % 50; // BELOM
-    printf("\n [No. %03d]", nomorNota);
-    printf("\n [Meja %02d]", nomorMeja);
-
+    
+    printf("\n [Nomor:\t %03d]", nomorNota);
+    printf("\n [Meja:\t %03d]", nomorMeja);
     
     insertLastParent(&(*Kasir), makeDataParent(nomorNota, tanggal, nomorMeja));
     insertLastParent(&(*Dapur), makeDataParent(nomorNota, tanggal, nomorMeja));
-    // CAPEK
+	
+	printf("\n\t\t---[ Makanan ]--- [0 untuk lanjut minuman]\n");
+	do{
+		printf("\n [*] Pilih ID: "); scanf("%d", &ID);
+		if(ID == 0) break;
+		printf(" [*] Jumlah: "); scanf("%d", &jumlah);
+		insertLastChild((*Kasir), nomorNota, makeDataChild(makanan[ID-1].nama, jumlah, makanan[ID-1].harga));
+		insertLastChild((*Dapur), nomorNota, makeDataChild(makanan[ID-1].nama, jumlah, makanan[ID-1].harga));
+	} while (1);
+    
+    printf("\n\t\t[][ Minuman ]--- [0 untuk keluar lanjut]\n");
+	do{
+		printf("\n [*] Pilih ID: "); scanf("%d", &ID);
+		if(ID == 0) break;
+		printf(" [*] Jumlah: "); scanf("%d", &jumlah);
+		insertLastChild((*Kasir), nomorNota, makeDataChild(minuman[ID-1].nama, jumlah, minuman[ID-1].harga));
+		insertLastChild((*Dapur), nomorNota, makeDataChild(minuman[ID-1].nama, jumlah, minuman[ID-1].harga));
+	} while (1);
+	
+	printf("\n[+] Nota %d sudah dimasukkan untuk diproses di dapur.", nomorNota);
 }
 
 int readCounter()
