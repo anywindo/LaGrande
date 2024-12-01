@@ -39,13 +39,14 @@ void updateNota(Multilist *Kasir, Multilist *Dapur){ // NATAN
     AddressParent alamatUpdate;
 
     printf("\n\t\t---[ Update Nota ]---\n");
-    printf("\n\tNomor Nota yang Diupdate : \n"); scanf("%d", &nomorNota);
-    findParent(*Kasir, nomorNota);
+    printf("\n\tNomor Nota yang Diupdate : "); scanf("%d", &nomorNota);
+    alamatUpdate = findParent(*Kasir, nomorNota);
     
 	if(alamatUpdate == NULL){
 		printf("\n Nota Tidak Ditemukan");
 		return;
-	}
+	}else{
+	
     
     tampilkanMenu(menuMakanan, menuMinuman);
     
@@ -65,8 +66,8 @@ void updateNota(Multilist *Kasir, Multilist *Dapur){ // NATAN
 		
 		printf(" [*] Jumlah: "); scanf("%d", &jumlah);
 		
-//		insertLastChild((*Kasir), nomorNota, makeDataChild(menuMakanan[ID-1].nama, jumlah, menuMakanan[ID-1].harga * jumlah));
-//		insertLastChild((*Dapur), nomorNota, makeDataChild(menuMakanan[ID-1].nama, jumlah, menuMakanan[ID-1].harga * jumlah));
+		insertLastChild((*Kasir), nomorNota, makeDataChild(menuMakanan[ID-1].nama, jumlah, menuMakanan[ID-1].harga * jumlah));
+		insertLastChild((*Dapur), nomorNota, makeDataChild(menuMakanan[ID-1].nama, jumlah, menuMakanan[ID-1].harga * jumlah));
 		
 		subtotal += menuMakanan[ID-1].harga * jumlah;
 		printf(" [*] Selected '%s' * %d = Rp%.2f\n", menuMakanan[ID-1].nama, jumlah, menuMakanan[ID-1].harga * jumlah);
@@ -87,13 +88,15 @@ void updateNota(Multilist *Kasir, Multilist *Dapur){ // NATAN
 		}
 		
 		printf(" [*] Jumlah: "); scanf("%d", &jumlah);
-//		insertLastChild((*Kasir), nomorNota, makeDataChild(menuMinuman[ID-1].nama, jumlah, menuMinuman[ID-1].harga * jumlah));
-//		insertLastChild((*Dapur), nomorNota, makeDataChild(menuMinuman[ID-1].nama, jumlah, menuMinuman[ID-1].harga * jumlah));
+		insertLastChild((*Kasir), nomorNota, makeDataChild(menuMinuman[ID-1].nama, jumlah, menuMinuman[ID-1].harga * jumlah));
+		insertLastChild((*Dapur), nomorNota, makeDataChild(menuMinuman[ID-1].nama, jumlah, menuMinuman[ID-1].harga * jumlah));
 	
 		subtotal += menuMakanan[ID-1].harga * jumlah;
 		printf(" [*] Selected '%s' * %d = Rp%.2f\n", menuMinuman[ID-1].nama, jumlah, menuMinuman[ID-1].harga * jumlah);
 	} while (1);
 	
-    // LANJUTAN
+	}
+    printf("\n [*] Subtotal: Rp%.2f", subtotal);
+	printf("\n [+] Nota %d sudah dimasukkan untuk diproses di dapur.", nomorNota);
 }
 
