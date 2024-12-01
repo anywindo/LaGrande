@@ -20,8 +20,8 @@ int main(void) {
     createEmpty(&Kasir);
 
     // MAIN PROG
-login:
-//    loginUser(); // LOGIN
+    login:
+    loginUser(); // LOGIN
 
     // OUTER LOOP
     do{
@@ -44,13 +44,13 @@ login:
                 printf("\n\t[!] Menu tidak tersedia!");
                 break;
             case '0': // LOGOUT
-                printf("\n\t[>] Konfirmasi logout (y/n): "); getchar(); confirm = getchar();
+                printf("\n\t[>] Konfirmasi logout (y/n): "); confirm = getchar();
                 if(confirm == 'y') goto login; // LOGOUT
                 else
                     printf("\n\t[*] Batal logout");
                 break;
             case 'Q': // QUIT
-                printf("\n\t[>] Konfirmasi keluar aplikasi (y/n): "); getchar(); confirm = getchar();
+                printf("\n\t[>] Konfirmasi keluar aplikasi (y/n): "); confirm = getchar();
                 if(confirm == 'y') exit(1);
                 else
                     printf("\n\t[*] Batal keluar");

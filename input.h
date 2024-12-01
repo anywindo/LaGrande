@@ -62,6 +62,7 @@ void inputPesanan(Multilist *Kasir, Multilist *Dapur, string tanggal){
     printf("\n [No. %03d]", nomorNota);
     printf("\n [Meja %02d]", nomorMeja);
 
+    
     insertLastParent(&(*Kasir), makeDataParent(nomorNota, tanggal, nomorMeja));
     insertLastParent(&(*Dapur), makeDataParent(nomorNota, tanggal, nomorMeja));
     // CAPEK
