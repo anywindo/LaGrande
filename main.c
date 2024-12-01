@@ -1,6 +1,5 @@
 #include "header.h"
 #include "login.h"
-#include "input.h"
 
 int main(void) {
     // VARS
@@ -33,6 +32,7 @@ int main(void) {
         	// POS SYSTEM
         	
             case '1': // PESANAN BARU
+            	
                 inputPesanan(&Kasir, &Dapur, tanggal); // masih belom jadi;
             break;
 
@@ -75,7 +75,7 @@ int main(void) {
             case 'Q': // QUIT
                 printf("\n\t[>] Konfirmasi keluar aplikasi (y/n): "); confirm = getch();
                 
-                if(confirm == 'y') exit(1);
+                if(confirm == 'y') exit(0);
                 else
                     printf("\n\t[*] Batal keluar");
             break;
