@@ -25,7 +25,10 @@ void inputPesanan(Multilist *Kasir, Multilist *Dapur, string tanggal){ // ALEX
 	float subtotal = 0;
     int nomorNota = getNomorNota();
     int nomorMeja = rand() % 50; // BELOM NUNGGU PUTRI BUAT MEJA
-	
+	AddressParent alamatNotaKasir,alamatNotaDapur;
+    alamatNotaKasir = findParent(*Kasir, nomorNota);
+    alamatNotaDapur = findParent(*Dapur, nomorNota);
+    
     system("cls");
     printf("\n [Date: %s]\n", tanggal);
     tampilkanMenu(menuMakanan, menuMinuman);
@@ -38,7 +41,7 @@ void inputPesanan(Multilist *Kasir, Multilist *Dapur, string tanggal){ // ALEX
     insertLastParent(&(*Kasir), makeDataParent(nomorNota, tanggal, nomorMeja));
     insertLastParent(&(*Dapur), makeDataParent(nomorNota, tanggal, nomorMeja));
 	
-	printf("\n\n [#A]-[ Makanan ]--- [0 untuk lanjut]\n");
+	printf("\n\n [#A]-[ menuMakanan ]--- [0 untuk lanjut]\n");
 	do{
 		inputmenuMakanan:
 		printf("\n [*] Pilih ID: "); scanf("%d", &ID);
@@ -54,14 +57,14 @@ void inputPesanan(Multilist *Kasir, Multilist *Dapur, string tanggal){ // ALEX
 		
 		printf(" [*] Jumlah: "); scanf("%d", &jumlah);
 		
-		insertLastChild((*Kasir), nomorNota, makeDataChild(menuMakanan[ID-1].nama, jumlah, menuMakanan[ID-1].harga));
-		insertLastChild((*Dapur), nomorNota, makeDataChild(menuMakanan[ID-1].nama, jumlah, menuMakanan[ID-1].harga));
+		insertLastChild((*Kasir), nomorNota, makeDataChild(menuMakanan[ID-1].nama, jumlah, menuMakanan[ID-1].harga * jumlah));
+		insertLastChild((*Dapur), nomorNota, makeDataChild(menuMakanan[ID-1].nama, jumlah, menuMakanan[ID-1].harga * jumlah));
 		
 		subtotal += menuMakanan[ID-1].harga * jumlah;
 		printf(" [*] Selected '%s' * %d = Rp%.2f\n", menuMakanan[ID-1].nama, jumlah, menuMakanan[ID-1].harga * jumlah);
 	} while (1);
     
-    printf("\n\n [#B]-[ Minuman ]--- [0 untuk lanjut]\n");
+    printf("\n\n [#B]-[ menuMinuman ]--- [0 untuk lanjut]\n");
 	do{
 		inputmenuMinuman:
 		printf("\n [*] Pilih ID: "); scanf("%d", &ID);
@@ -83,15 +86,13 @@ void inputPesanan(Multilist *Kasir, Multilist *Dapur, string tanggal){ // ALEX
 		printf(" [*] Selected '%s' * %d = Rp%.2f\n", menuMinuman[ID-1].nama, jumlah, menuMinuman[ID-1].harga * jumlah);
 	} while (1);
 	
-	if (subtotal == 0)
-	{
-		printf("\n [+] Nota %d dibatalkan.", nomorNota);
-		return;
-	}
-	
 	printf("\n [*] Subtotal: Rp%.2f", subtotal);
 	printf("\n [+] Nota %d sudah dimasukkan untuk diproses di dapur.", nomorNota);
+	
+	updateTotalPembelian( alamatNotaKasir);
+	updateTotalPembelian( alamatNotaDapur);
 }
+
 
 int readCounter()
 {

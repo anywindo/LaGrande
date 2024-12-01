@@ -12,9 +12,25 @@ bool prosesPayment(Multilist *L, int nomorNota, float jumlahBayar) {
 
 }
 
-void updateTotalPembelian(AddressParent nota) {
+void updateTotalPembelian(AddressParent nota) { //natan
+	if (nota == NULL) {
+        printf("Parent (Nota) tidak ditemukan!\n");
+        return;
+    }
 
+    // Reset grandTotal
+    nota->dataParent.totalPembelian = 0.0f;
+
+    // Mulai traversal child dari parent
+    AddressChild currentChild = nota->firstChild;
+    
+    // Traversal seluruh child dan tambah subtotal ke grandTotal
+    while (currentChild != NULL) {
+        nota->dataParent.totalPembelian += currentChild->dataChild.subtotal;  // Menambahkan subtotal child ke grandTotal parent
+        currentChild = currentChild->next;  // Pindah ke child berikutnya
+    }
 }
+
 
 bool isNotaLunas(AddressParent nota) {
 
@@ -36,13 +52,14 @@ void updateNota(Multilist *Kasir, Multilist *Dapur){ // NATAN
     system("cls");
     int nomorNota;
     int ID, jumlah;
-    AddressParent alamatUpdate;
+    AddressParent alamatNotaKasir,alamatNotaDapur;
 
     printf("\n\t\t---[ Update Nota ]---\n");
     printf("\n\tNomor Nota yang Diupdate : "); scanf("%d", &nomorNota);
-    alamatUpdate = findParent(*Kasir, nomorNota);
+    alamatNotaKasir = findParent(*Kasir, nomorNota);
+    alamatNotaDapur = findParent(*Dapur, nomorNota);
     
-	if(alamatUpdate == NULL){
+	if(alamatNotaKasir == NULL){
 		printf("\n Nota Tidak Ditemukan");
 		return;
 	}else{
@@ -98,5 +115,9 @@ void updateNota(Multilist *Kasir, Multilist *Dapur){ // NATAN
 	}
     printf("\n [*] Subtotal: Rp%.2f", subtotal);
 	printf("\n [+] Nota %d sudah dimasukkan untuk diproses di dapur.", nomorNota);
+	updateTotalPembelian( alamatNotaKasir);
+	updateTotalPembelian( alamatNotaDapur);
+	
+	 printf("Grand Total untuk Nota %d: Rp%.2f\n", alamatNotaKasir->dataParent.nomorNota, alamatNotaKasir->dataParent.totalPembelian);
 }
 
