@@ -118,6 +118,6 @@ void updateNota(Multilist *Kasir, Multilist *Dapur){ // NATAN
 	updateTotalPembelian( alamatNotaKasir);
 	updateTotalPembelian( alamatNotaDapur);
 	
-	 printf("Grand Total untuk Nota %d: Rp%.2f\n", alamatNotaKasir->dataParent.nomorNota, alamatNotaKasir->dataParent.totalPembelian);
+	printf("Grand Total untuk Nota %d: Rp%.2f\n", alamatNotaKasir->dataParent.nomorNota, alamatNotaKasir->dataParent.totalPembelian);
 }
 
