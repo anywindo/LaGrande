@@ -52,7 +52,7 @@ void tampilkanMenu(Menu makanan[], Menu minuman[]) {
 }
 
 
-void inputPesanan(Multilist *Kasir, Multilist *Dapur, string tanggal){
+void inputPesanan(Multilist *Kasir, Multilist *Dapur, string tanggal){ // ALEX
 	int ID, jumlah;
     int nomorNota = getNomorNota();
     int nomorMeja = rand() % 50; // BELOM NUNGGU PUTRI BUAT MEJA
