@@ -3,8 +3,10 @@
 Menu menuMakanan[] = MENU_MAKANAN;
 Menu menuMinuman[] = MENU_MINUMAN;
 
-void tampilkanMenu(Menu menuMakanan[], Menu menuMinuman[]) { // ALEX
+void tampilkanMenu() { // ALEX
     int i;
+    Menu menuMakanan[] = MENU_MAKANAN;
+	Menu menuMinuman[] = MENU_MINUMAN;
     
     printf("\n =======================================================================================\n");
     printf("| %-3s | %-20s | %-8s |    \t| %-3s | %-20s | %-8s |\n", 
@@ -113,7 +115,7 @@ void saveCounter(int counter)
         exit(1);
     }
 
-    fprintf(file, "%d", counter); // Save the updated counter value
+    fprintf(file, "%d", counter);
     fclose(file);
 }
 

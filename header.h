@@ -129,7 +129,7 @@ typedef struct{
 int getNomorNota(); // MENU.C
 void saveCounter(int counter); // MENU.C
 int readCounter(); // MENU.C
-void tampilkanMenu(Menu menuMakanan[], Menu menuMinuman[]); // MENU.C
+void tampilkanMenu(); // MENU.C
 void inputPesanan(Multilist *Kasir, Multilist *Dapur, string tanggal); // MENU.C
 // END ADT MENU ------------------------------------------------------------------------------------------------
 
