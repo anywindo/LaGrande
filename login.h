@@ -143,7 +143,7 @@ void adminManagement(){
                 printf("\n\t[!] Menu tidak ada!");
                 break;
         }
-        getch();
+        if(menu != 0) getch();
     } while (menu != 0);
 }
 

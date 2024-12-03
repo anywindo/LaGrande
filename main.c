@@ -71,7 +71,7 @@ int main(void) {
 				        break;
 				        
 				        case '2': // PRINT ALL
-				        	
+				        	printAllNota(Kasir);
 				        break;
 				        
 				        case '3': // GABUNG NOTA
