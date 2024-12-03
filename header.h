@@ -117,24 +117,21 @@ typedef struct{
     float harga;
 } Menu;
 
-#define MENU_MAKANAN { \
+#define MENU_PESANAN { \
     {1, "Grilled Sandwich", 40900}, \
     {2, "Granola", 36800}, \
     {3, "Croissant", 30100}, \
     {4, "Caesar Salad", 25900}, \
     {5, "Carbonara", 35800}, \
     {6, "Chicken Wings", 40800}, \
-    {7, "Signature Fried Rice", 45900} \
-}
-
-#define MENU_MINUMAN { \
-    {1, "Mineral Water", 10500}, \
-    {2, "Signature Tea", 30900}, \
-    {3, "Oolong Rain Tea", 25900}, \
-    {4, "Me-Espresso", 37800}, \
-    {5, "Mochalatte", 36900}, \
-    {6, "Lattearth", 37900}, \
-    {7, "Koomboocha", 32900} \
+    {7, "Signature Fried Rice", 45900}, \
+    {8, "Mineral Water", 10500}, \
+    {9, "Signature Tea", 30900}, \
+    {10, "Oolong Rain Tea", 25900}, \
+    {11, "Me-Espresso", 37800}, \
+    {12, "Mochalatte", 36900}, \
+    {13, "Lattearth", 37900}, \
+    {14, "Koomboocha", 32900} \
 }
 
 // DECLARASI

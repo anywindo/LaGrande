@@ -1,12 +1,10 @@
 #include "header.h"
 
-Menu menuMakanan[] = MENU_MAKANAN;
-Menu menuMinuman[] = MENU_MINUMAN;
+Menu menuPesanan[] = MENU_PESANAN;
 
 void tampilkanMenu() { // ALEX
     int i;
-    Menu menuMakanan[] = MENU_MAKANAN;
-	Menu menuMinuman[] = MENU_MINUMAN;
+    Menu menuPesanan[] = MENU_PESANAN;
     
     printf("\n =======================================================================================\n");
     printf("| %-3s | %-20s | %-8s |    \t| %-3s | %-20s | %-8s |\n", 
@@ -14,8 +12,8 @@ void tampilkanMenu() { // ALEX
     printf(" ---------------------------------------------------------------------------------------\n");
     for (i = 0; i < 7; i++) {
         printf("| %-3d | %-20s | Rp%.0f |    \t| %-3d | %-20s | Rp%.0f |\n", 
-               menuMakanan[i].id, menuMakanan[i].nama, menuMakanan[i].harga, 
-               menuMinuman[i].id, menuMinuman[i].nama, menuMinuman[i].harga);
+               menuPesanan[i].id, menuPesanan[i].nama, menuPesanan[i].harga, 
+               menuPesanan[i+7].id, menuPesanan[i+7].nama, menuPesanan[i+7].harga);
     }
     printf(" =======================================================================================\n\n");
 }
@@ -34,7 +32,7 @@ void inputPesanan(Multilist *Kasir, Multilist *Dapur, string tanggal){ // ALEX
     
     system("cls");
     printf("\n [Date: %s]\n", tanggal);
-    tampilkanMenu(menuMakanan, menuMinuman);
+    tampilkanMenu();
     
     printf("\n\t\t---[ Pesanan Baru ]---\n");
     
@@ -44,53 +42,32 @@ void inputPesanan(Multilist *Kasir, Multilist *Dapur, string tanggal){ // ALEX
     insertLastParent(&(*Kasir), makeDataParent(nomorNota, tanggal, nomorMeja));
     insertLastParent(&(*Dapur), makeDataParent(nomorNota, tanggal, nomorMeja));
 	
-	printf("\n\n [#A]-[ menuMakanan ]--- [0 untuk lanjut]\n");
+	printf("\n\n [>>]-[ Order ]--- [0 untuk lanjut]\n");
 	do{
-		inputmenuMakanan:
+		inputPesanan:
 		printf("\n [*] Pilih ID: "); scanf("%d", &ID);
 		
-		if(ID > 7 || ID < 1)
+		if(ID > 14 || ID < 1)
 		{
 			if(ID == 0) break;
 			
 			printf(" [!] ID tidak tersedia\n");
 			getch();
-			goto inputmenuMakanan;
+			goto inputPesanan;
 		}
 		
 		printf(" [*] Jumlah: "); scanf("%d", &jumlah);
 		
-		insertLastChild((*Kasir), nomorNota, makeDataChild(menuMakanan[ID-1].nama, jumlah, menuMakanan[ID-1].harga * jumlah));
-		insertLastChild((*Dapur), nomorNota, makeDataChild(menuMakanan[ID-1].nama, jumlah, menuMakanan[ID-1].harga * jumlah));
+		insertLastChild((*Kasir), nomorNota, makeDataChild(menuPesanan[ID-1].nama, jumlah, menuPesanan[ID-1].harga * jumlah));
+		insertLastChild((*Dapur), nomorNota, makeDataChild(menuPesanan[ID-1].nama, jumlah, menuPesanan[ID-1].harga * jumlah));
 		
-		subtotal += menuMakanan[ID-1].harga * jumlah;
-		printf(" [*] Selected '%s' * %d = Rp%.2f\n", menuMakanan[ID-1].nama, jumlah, menuMakanan[ID-1].harga * jumlah);
+		subtotal += menuPesanan[ID-1].harga * jumlah;
+		printf(" [*] Selected '%s' * %d = Rp%.2f\n", menuPesanan[ID-1].nama, jumlah, menuPesanan[ID-1].harga * jumlah);
 	} while (1);
     
-    printf("\n\n [#B]-[ menuMinuman ]--- [0 untuk lanjut]\n");
-	do{
-		inputmenuMinuman:
-		printf("\n [*] Pilih ID: "); scanf("%d", &ID);
-		
-		if(ID > 7 || ID < 1)
-		{
-			if(ID == 0) break;
-			
-			printf(" [!] ID tidak tersedia\n");
-			getch();
-			goto inputmenuMinuman;
-		}
-		
-		printf(" [*] Jumlah: "); scanf("%d", &jumlah);
-		insertLastChild((*Kasir), nomorNota, makeDataChild(menuMinuman[ID-1].nama, jumlah, menuMinuman[ID-1].harga * jumlah));
-		insertLastChild((*Dapur), nomorNota, makeDataChild(menuMinuman[ID-1].nama, jumlah, menuMinuman[ID-1].harga * jumlah));
-	
-		subtotal += menuMakanan[ID-1].harga * jumlah;
-		printf(" [*] Selected '%s' * %d = Rp%.2f\n", menuMinuman[ID-1].nama, jumlah, menuMinuman[ID-1].harga * jumlah);
-	} while (1);
 	
 	printf("\n [*] Subtotal: Rp%.2f", subtotal);
-	printf("\n [+] Nota %d sudah dimasukkan untuk diproses di dapur.", nomorNota);
+	printf("\n [+] Nota %d sudah dimasukkan untuk diproses di dapur.\n", nomorNota);
 	
 	updateTotalPembelian( alamatNotaKasir);
 	updateTotalPembelian( alamatNotaDapur);
