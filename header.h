@@ -5,10 +5,12 @@
 #include <time.h>
 
 #define STATIC_FILE "statis.bin"
+#define NOTA_FILE "nota.bin"
 #define JUMLAH_MEJA 20
 
 typedef struct{
 	float omset;
+	
 	// STATISTIK LOAD DARI FILE
 } Statis;
 
@@ -48,7 +50,7 @@ typedef struct Parent {
     DataParent dataParent;
     AddressParent next;
     AddressChild firstChild;
-    AddressParent merged;  // Pointer untuk nota yang digabungkan
+    AddressParent merged;
 } NodeParent;
 
 // STRUKTUR MULTILIST
@@ -78,11 +80,10 @@ void insertLastChild(Multilist L, int nomorNota, DataChild data); // SOURCE.C
 void deleteChild(Multilist *L, int nomorNota, string namaItem); // SOURCE.C
 
 // FUNGSI OPERASI NOTA
-void mergeNota(Multilist *L, int notaSumber, int notaTujuan); // NOTA.C
+void mergeNota(Multilist *L, Multilist *L2); // NOTA.C
 void splitNota(Multilist *L, int nomorNota, int jumlahSplit); // NOTA.C
-bool prosesPayment(Multilist *L, int nomorNota, float jumlahBayar); // NOTA.C
+void prosesPayment(Multilist *Kasir, Multilist *Dapur); // NOTA.C
 void updateTotalPembelian(AddressParent nota); // NOTA.C
-bool isNotaLunas(AddressParent nota); // NOTA.C
 AddressChild findChild(AddressParent nota, string namaItem); // NOTA.C
 void moveAllItems(AddressParent source, AddressParent destination); // NOTA.C
 void updateNota(Multilist *Kasir, Multilist *Dapur); // NOTA.C
@@ -95,7 +96,7 @@ void printAllNota(Multilist L); // GENERAL.C
 
 // FUNGSI BONUS (FILE HANDLING)
 void saveToFile(Multilist L); // FILEHANDLER.C
-void loadFromFile(Multilist *L, string filename); // FILEHANDLER.C
+void loadFromFile(Multilist *L); // FILEHANDLER.C
 void saveStatis(Statis *data); // FILEHANDLER.C
 void loadStatis(Statis *data); // FILE HANDLER.C
 

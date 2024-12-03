@@ -18,8 +18,9 @@ int main(void) {
     sprintf(tanggal, "%02d-%02d-%04d", day, month, year);
     createEmpty(&Dapur);
     createEmpty(&Kasir);
+    loadFromFile(&Kasir);
     loadStatis(&Stat);
-
+    
     // MAIN PROG
     login:
     loginUser(); // LOGIN
@@ -35,7 +36,7 @@ int main(void) {
         	// POS SYSTEM
         	
             case '1': // PESANAN BARU
-                inputPesanan(&Kasir, &Dapur, tanggal); // POTENSI ERROR - TOTAL PEMBELIAN
+                inputPesanan(&Kasir, &Dapur, tanggal);
             break;
 
 			case '2': // UPDATE
@@ -48,7 +49,12 @@ int main(void) {
 			break;
 			
 			case '3': // PEMBAYARAN - SELESAI
-            	
+            	if(isEmpty(Kasir)){
+            		printf("\n [!] Nota Kosong");
+            		break;
+				}
+				
+				prosesPayment(&Kasir, &Dapur);
 			break;
 
 			case '4': // TOOLS - SHOW MERGE SPLIT ETC
@@ -75,11 +81,11 @@ int main(void) {
 				        break;
 				        
 				        case '3': // GABUNG NOTA
-				        
+				        	saveToFile(Kasir);
 				        break;
 				        
 				        case '4': // SPLIT NOTA
-				        
+				        	saveToFile(Kasir);
 				        break;
 					}
 					getch();
@@ -89,7 +95,8 @@ int main(void) {
 			// MANAGEMENT
 			
 			case '5': // PENGHASILAN
-				
+				loadStatis(&Stat);
+				printf("\n\t[*] Pengahasilan: Rp%.2f", Stat.omset);
 			break;
 			
 			case '6': // ANALYSIS
@@ -114,7 +121,10 @@ int main(void) {
             case 'Q': // QUIT
                 printf("\n\t[>] Konfirmasi keluar aplikasi (y/n): "); confirm = getch();
                 
-                if(confirm == 'y') exit(0);
+                if(confirm == 'y'){
+                	saveToFile(Kasir);
+                	exit(0);
+				}
                 else
                     printf("\n\t[*] Batal keluar");
             break;

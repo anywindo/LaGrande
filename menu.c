@@ -57,9 +57,14 @@ void inputPesanan(Multilist *Kasir, Multilist *Dapur, string tanggal){ // ALEX
 		}
 		
 		printf(" [*] Jumlah: "); scanf("%d", &jumlah);
+		if(jumlah < 1) 
+		{
+			printf(" [!] Jumlah harus lebih dari 0.");
+			goto inputPesanan;
+		}
 		
-		insertLastChild((*Kasir), nomorNota, makeDataChild(menuPesanan[ID-1].nama, jumlah, menuPesanan[ID-1].harga * jumlah));
-		insertLastChild((*Dapur), nomorNota, makeDataChild(menuPesanan[ID-1].nama, jumlah, menuPesanan[ID-1].harga * jumlah));
+		insertLastChild((*Kasir), nomorNota, makeDataChild(menuPesanan[ID-1].nama, jumlah, menuPesanan[ID-1].harga));
+		insertLastChild((*Dapur), nomorNota, makeDataChild(menuPesanan[ID-1].nama, jumlah, menuPesanan[ID-1].harga));
 		
 		subtotal += menuPesanan[ID-1].harga * jumlah;
 		printf(" [*] Selected '%s' * %d = Rp%.2f\n", menuPesanan[ID-1].nama, jumlah, menuPesanan[ID-1].harga * jumlah);
@@ -98,7 +103,7 @@ void saveCounter(int counter)
 
     if (file == NULL)
     {
-        printf("Error: Unable to open file for writing.\n");
+        printf("\n [!] Error: Unable to open file for writing.\n");
         exit(1);
     }
 

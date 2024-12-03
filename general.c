@@ -68,7 +68,7 @@ void printNota(AddressParent nota) {
             printf("\n\t\tNama Item: %s", currentChild->dataChild.namaItem);
             printf("\n\t\tJumlah: %d", currentChild->dataChild.jumlah);
             printf("\n\t\tHarga: Rp%.2f", currentChild->dataChild.harga);
-            printf("\n\t\tSubtotal: Rp%.2f", currentChild->dataChild.subtotal);
+            printf("\n\t\tSubtotal: Rp%.2f\n", currentChild->dataChild.subtotal);
             currentChild = currentChild->next;
         }
     } else {
@@ -79,23 +79,14 @@ void printNota(AddressParent nota) {
 void printAllNota(Multilist L) {
     AddressParent current = L.firstParent;
     if (current == NULL) {
-        printf("\n\tTidak ada nota yang tersedia.\n");
+        printf("\n [!] Tidak ada nota yang tersedia.\n");
         return;
     }
 
     while (current != NULL) {
-        printf("\n\tNomor Nota: %03d", current->dataParent.nomorNota);
-        printf("\n\tTanggal: %s", current->dataParent.tanggal);
-        printf("\n\tNomor Meja: %d", current->dataParent.nomorMeja);
-        printf("\n\tTotal Pembelian: Rp%.2f\n", current->dataParent.totalPembelian);
-        
-        AddressChild currentChild = current->firstChild;
-        while (currentChild != NULL) {
-            printf("\n\t\tNama Item: %s", currentChild->dataChild.namaItem);
-            printf("\n\t\tJumlah: %d", currentChild->dataChild.jumlah);
-            printf("\n\t\tHarga: Rp%.2f", currentChild->dataChild.harga);
-            printf("\n\t\tSubtotal: Rp%.2f", currentChild->dataChild.subtotal);
-            currentChild = currentChild->next;
+//    	if(current->dataParent.status)
+    	{
+	        printNota(current);
         }
 
         current = current->next;
