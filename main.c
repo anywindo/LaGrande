@@ -1,10 +1,11 @@
 #include "header.h"
 #include "login.h"
 
+Statis Stat = {0.0, {0}};
+
 int main(void) {
     // VARS
     Multilist Dapur, Kasir;
-    Statis Stat;
 	
     // TEMP VARS
     char menu, confirm;

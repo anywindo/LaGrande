@@ -112,7 +112,7 @@ void printPilih(Multilist Nota){
 }
 
 void logoASCII() { // ALEX
-	printf("\n\n");
+	printf("\n");
     printf("\t\t\t\t       .-.                  .-.                       .      \n");
     printf("\t\t\t\t      / (_)          .--.`-'                         /       \n");
     printf("\t\t\t\t     /      .-.     /  (_;    ).--..-.  .  .-.  .-../   .-.  \n");

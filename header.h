@@ -35,6 +35,8 @@ typedef struct{
 	int ID[14];
 } Statis;
 
+extern Statis Stat;
+
 typedef struct{
     int id;
     string nama;
