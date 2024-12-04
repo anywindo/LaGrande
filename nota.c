@@ -85,6 +85,7 @@ void prosesPayment(Multilist *Kasir, Multilist *Dapur) {
 			stat.omset += alamatNotaKasir->dataParent.totalPembelian;
 			saveStatis(&stat);
 			
+			MEJA[alamatNotaKasir->dataParent.nomorMeja-1] = 0;
 			alamatNotaKasir->dataParent.status = false;
 			alamatNotaDapur->dataParent.status = false;
 		}

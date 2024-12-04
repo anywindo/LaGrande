@@ -4,7 +4,7 @@
 void showMenu(char *picker, string user) { // ALEX	
     printf("\n [User: %s]\n", user);
     logoASCII();
-
+	
 	printf("\n\t\t---[ Meja Tersedia ]---\n");
 	printMEJA();
 	
