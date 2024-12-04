@@ -21,6 +21,7 @@ int main(void) {
     createEmpty(&Dapur);
     createEmpty(&Kasir);
     loadStatis(&Stat);
+    loadFromFile(&Kasir);
         
     // MAIN PROG
     preBoot();
@@ -119,7 +120,7 @@ int main(void) {
 			break;
 			
 			case '6': // ANALYSIS
-				
+				menuTerjual();
 			break;
 
 
@@ -141,7 +142,8 @@ int main(void) {
                 printf("\n\t[>] Konfirmasi keluar aplikasi (y/n): "); scanf(" %c", &confirm);
                 
                 if(confirm == 'y'){
-//                	saveToFile(Kasir);
+                	saveToFile(Kasir);
+                	saveStatis(&Stat);
 					ShutdownMessage();
                 	exit(0);
 				}

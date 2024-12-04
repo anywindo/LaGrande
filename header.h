@@ -5,9 +5,9 @@
 #include <time.h>
 
 #define STATIC_FILE "statis.bin"
-//#define NOTA_FILE "nota.bin"
+#define NOTA_FILE "nota.bin"
 #define JUMLAH_MEJA 20
-#define FILENAME "nomor_nota.txt"
+#define FILENAME "nomor.txt"
 
 #define MENU_PESANAN { \
     {1, "Grilled Sandwich", 40900}, \

@@ -187,6 +187,7 @@ void updateNota(Multilist *Kasir, Multilist *Dapur){ // NATAN
 			goto inputPesanan;
 		}
 		
+		Stat.ID[ID-1] += 1;
 		insertLastChild((*Kasir), nomorNota, makeDataChild(menuPesanan[ID-1].nama, jumlah, menuPesanan[ID-1].harga));
 		insertLastChild((*Dapur), nomorNota, makeDataChild(menuPesanan[ID-1].nama, jumlah, menuPesanan[ID-1].harga));
 		
@@ -276,6 +277,7 @@ void inputPesanan(Multilist *Kasir, Multilist *Dapur, string tanggal){ // ALEX
 			goto inputPesanan;
 		}
 		
+		Stat.ID[ID-1] += 1;
 		insertLastChild((*Kasir), nomorNota, makeDataChild(menuPesanan[ID-1].nama, jumlah, menuPesanan[ID-1].harga));
 		insertLastChild((*Dapur), nomorNota, makeDataChild(menuPesanan[ID-1].nama, jumlah, menuPesanan[ID-1].harga));
 		

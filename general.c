@@ -80,7 +80,7 @@ void printAllNota(Multilist L) {
 void printNotaAktif(Multilist Nota){
 	AddressParent current = Nota.firstParent;
     
-	printf("\n\t [*] Nota Aktif: ");   
+	printf("\n\t[*] Nota Aktif: ");   
 	 
     if (current == NULL){
 		printf("Tidak ada nota.");
@@ -112,13 +112,12 @@ void printPilih(Multilist Nota){
 }
 
 void logoASCII() { // ALEX
-	printf("\n");
-    printf("\t\t\t\t       .-.                  .-.                       .      \n");
+    printf("\n\t\t\t\t       .-.                  .-.                       .      \n");
     printf("\t\t\t\t      / (_)          .--.`-'                         /       \n");
     printf("\t\t\t\t     /      .-.     /  (_;    ).--..-.  .  .-.  .-../   .-.  \n");
     printf("\t\t\t\t    /      (  |    /         /    (  |   )/   )(   /  ./.-'_ \n");
     printf("\t\t\t\t .-/.    .-.`-'-' (     --;-/      `-'-''/   (  `-'-..(__.'  \n");
-    printf("\t\t\t\t(_/ `-._.          `.___.'                    `-              \n\n");
+    printf("\t\t\t\t(_/ `-._.          `.___.'                    `-              \n");
 }
 
 void getLocalTime(int *day, int *month, int *year){ // ALEX
@@ -277,9 +276,9 @@ void preBoot() {
                 } else if (i == height / 2 - 1 && j == (width - strlen("terdapat tepat dalam satu direktori dari executable!")) / 2) {
                     printf("terdapat tepat dalam satu direktori dari executable!");
                     j += strlen("terdapat tepat dalam satu direktori dari executable!") - 1;
-                } else if (i == height / 2 + 1 && j == (width - strlen("[File: userdata.txt, nomor_nota.txt, dan statis.bin]")) / 2) {
-                    printf("[File: userdata.txt, nomor_nota.txt, dan statis.bin]");
-                    j += strlen("[File: userdata.txt, nomor_nota.txt, dan statis.bin]") - 1;
+                } else if (i == height / 2 + 1 && j == (width - strlen("[File: userdata.txt, nomor.txt, dan statis.bin]")) / 2) {
+                    printf("[File: userdata.txt, nomor.txt, dan statis.bin]");
+                    j += strlen("[File: userdata.txt, nomor.txt, dan statis.bin]") - 1;
                 } else if (i == height / 2 + 3 && j == (width - strlen("Copyright La Grande")) / 2) {
                     printf("Copyright La Grande");
                     j += strlen("Copyright La Grande") - 1;
@@ -348,4 +347,22 @@ void ShutdownMessage() {
     }
 
     printf("\033[0m");
+}
+
+void menuTerjual() {
+    Menu menuPesanan[] = MENU_PESANAN;
+    int i;
+
+    printf("\n\t+----+--------------------------+---------+");
+    printf("\n\t| ID | Nama                     | Terjual |");
+    printf("\n\t+----+--------------------------+---------+");
+
+    for (i = 0; i < 14; i++) {
+        printf("\n\t| %02d | %-24s | %03d     |", 
+            menuPesanan[i].id, 
+            menuPesanan[i].nama, 
+            Stat.ID[i]);
+    }
+
+    printf("\n\t+----+--------------------------+---------+\n");
 }
