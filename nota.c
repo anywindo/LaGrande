@@ -202,45 +202,7 @@ void updateNota(Multilist *Kasir, Multilist *Dapur){ // NATAN
 	
 }
 
-int readCounter()
-{
-    FILE *file = fopen(FILENAME, "r");
-    int counter = 0;
 
-    if (file == NULL)
-    {
-        counter = 0;
-    }
-    else
-    {
-        fscanf(file, "%d", &counter);
-        fclose(file);
-    }
-
-    return counter;
-}
-
-void saveCounter(int counter)
-{
-    FILE *file = fopen(FILENAME, "w");
-
-    if (file == NULL)
-    {
-        printf("\n [!] Error: Unable to open file for writing.\n");
-        exit(1);
-    }
-
-    fprintf(file, "%d", counter);
-    fclose(file);
-}
-
-int getNomorNota()
-{
-    int counter = readCounter();
-    counter++;
-    saveCounter(counter);
-    return counter;
-}
 
 void tampilkanMenu() { // ALEX
     int i;

@@ -308,3 +308,44 @@ void preBoot() {
 
     printf("\033[0m");
 }
+
+void ShutdownMessage() {
+    printf("\033[38;5;15m");
+
+    string messages[] = {
+        "\n[  OK      ] Initializing system components and verifying core modules to ensure a stable shutdown process...",
+        "[  OK      ] Loading essential drivers and checking module dependencies for optimal system operation...",
+        "[  OK      ] Verifying hardware configurations and performing a pre-shutdown diagnostic check...",
+        "[  OK      ] Checking disk integrity and performing a quick scan to detect potential file system issues...",
+        "[  OK      ] Mounting essential file systems and synchronizing data to ensure no data loss...",
+        "[  WARNING ] /dev/sr1 is write-protected, mounting read-only to avoid accidental data modification...",
+        "[  OK      ] Mounted file systems successfully. All required directories are now accessible...",
+        "[  INFO    ] Initiating safe shutdown sequence to minimize system impact and ensure power-down...",
+        "[  INFO    ] Running final checks on the memory and active processes to avoid potential issues...",
+        "[  OK      ] Deleting unnecessary system files to optimize shutdown process...",
+        "[  WARNING ] Deleting system32...",
+        "[  ERROR   ] Unable to delete system32 due to lack of permissions. File protection mechanisms in place...",
+        "[  OK      ] Proceeding with shutdown sequence. Powering down hardware components...",
+        "[  INFO    ] Closing active connections and preparing network interfaces for system shutdown...",
+        "[  OK      ] Preparing for final power-off. All services are now safely stopped and unregistered...",
+        "[  OK      ] Powering down system. No further operations will be possible after this point. Goodbye!"
+    };
+
+    int numMessages = sizeof(messages) / sizeof(messages[0]);
+	int i;
+    for (i = 0; i < numMessages; i++) {
+        int delay = 50 + (rand() % 200); 
+        if (i == 5) {
+            printf("\033[38;5;11m%s\n", messages[i]); 
+        } else if (i == 10) {
+            printf("\033[38;5;9m%s\n", messages[i]); 
+        } else if (i == 11) {
+            printf("\033[38;5;15m%s\n", messages[i]);
+        } else {
+            printf("\033[38;5;10m%s\n", messages[i]); 
+        }
+        Sleep(delay); 
+    }
+
+    printf("\033[0m");
+}

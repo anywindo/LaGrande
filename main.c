@@ -141,6 +141,7 @@ int main(void) {
                 
                 if(confirm == 'y'){
 //                	saveToFile(Kasir);
+					ShutdownMessage();
                 	exit(0);
 				}
                 else

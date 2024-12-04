@@ -26,7 +26,7 @@
     {14, "Koomboocha", 32900} \
 }
 
-typedef char string[100];
+typedef char string[200];
 
 extern int MEJA[20];
 
@@ -127,6 +127,7 @@ void tampilkanMenu();
 void inputPesanan(Multilist *Kasir, Multilist *Dapur, string tanggal);
 void preBoot();
 void drawProgressBar(int current, int total, int width);
+void ShutdownMessage();
 
 // FILEHANDLER.C
 void saveToFile(Multilist L);
