@@ -1,9 +1,11 @@
 #include "header.h"
 
 void saveToFile(Multilist L) {
+	
 }
 
 void loadFromFile(Multilist *L) {
+	
 }
 
 void saveStatis(Statis *data) {

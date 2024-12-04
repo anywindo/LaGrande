@@ -58,12 +58,13 @@ void loginUser() {
 
     while (attempts > 0) {
         system("cls");
-        printf("\n [PAGE: Login User] - [Attempt: %d]\n", attempts);
+        printf("\n\t [PAGE: Login User] - [Attempt: %d]\n", attempts);
         logoASCII();
-        printf("\n [>] Masukkan username: "); fflush(stdin); gets(username);
+        
+        printf("\n\t [>] Masukkan username: "); fflush(stdin); gets(username);
         trimNewline(username);
 
-        printf(" [>] Masukkan password: "); fflush(stdin); gets(password);
+        printf("\t [>] Masukkan password: "); fflush(stdin); gets(password);
         trimNewline(password);
 
         if (validateCredentials(username, password) && strcmp(username, "admin") == 0) {
@@ -73,16 +74,16 @@ void loginUser() {
                 return;
         } else if (validateCredentials(username, password)) {
             strcpy(userLogged, username);
-            printf("\n\t[*] Login berhasil! Selamat datang, %s.\n", username);
+            printf("\n\t [*] Login berhasil! Selamat datang, %s.\n", username);
             return;
         } else {
-            printf("\n\t[!] Username atau password salah!\n");
+            printf("\n\t [!] Username atau password salah!\n");
             attempts--;
         }
         getch();
     }
 
-    printf("\n\t[!] Anda telah mencoba login sebanyak 5 kali. Program akan keluar.\n");
+    printf("\n\t [!] Anda telah mencoba login sebanyak 5 kali. Program akan keluar.\n");
     exit(0);
 }
 

@@ -14,14 +14,16 @@ int main(void) {
     string tanggal;
 
     // INIT
+    srand(time(NULL));
     getLocalTime(&day, &month, &year);
     sprintf(tanggal, "%02d-%02d-%04d", day, month, year);
     createEmpty(&Dapur);
     createEmpty(&Kasir);
-    loadFromFile(&Kasir);
     loadStatis(&Stat);
-    
+        
     // MAIN PROG
+    preBoot();
+    
     login:
     loginUser(); // LOGIN
 
@@ -73,19 +75,35 @@ int main(void) {
 				        break;
 				        
 				        case '1': // PRINT ONE
-				        	
+				        	if(isEmpty(Kasir)){
+			            		printf("\n\t[!] Nota Kosong");
+			            		break;
+							}
+				        	printPilih(Kasir);
 				        break;
 				        
 				        case '2': // PRINT ALL
+				        	if(isEmpty(Kasir)){
+			            		printf("\n\t[!] Nota Kosong");
+			            		break;
+							}
 				        	printAllNota(Kasir);
 				        break;
 				        
 				        case '3': // GABUNG NOTA
-				        	saveToFile(Kasir);
+				        	if(isEmpty(Kasir)){
+			            		printf("\n\t[!] Nota Kosong");
+			            		break;
+							}
+				        	mergeNota(&Kasir, &Dapur);
 				        break;
 				        
 				        case '4': // SPLIT NOTA
-				        	saveToFile(Kasir);
+				        	if(isEmpty(Kasir)){
+			            		printf("\n\t[!] Nota Kosong");
+			            		break;
+							}
+							
 				        break;
 					}
 					getch();
@@ -111,7 +129,7 @@ int main(void) {
             break;
                 
             case '0': // LOGOUT
-                printf("\n\t[>] Konfirmasi logout (y/n): "); confirm = getch();
+                printf("\n\t[>] Konfirmasi logout (y/n): "); scanf(" %c", &confirm);
                 
                 if(confirm == 'y') goto login; // LOGOUT
                 else
@@ -119,10 +137,10 @@ int main(void) {
             break;
                 
             case 'Q': // QUIT
-                printf("\n\t[>] Konfirmasi keluar aplikasi (y/n): "); confirm = getch();
+                printf("\n\t[>] Konfirmasi keluar aplikasi (y/n): "); scanf(" %c", &confirm);
                 
                 if(confirm == 'y'){
-                	saveToFile(Kasir);
+//                	saveToFile(Kasir);
                 	exit(0);
 				}
                 else

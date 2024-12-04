@@ -4,8 +4,8 @@
 CPP      = g++.exe
 CC       = gcc.exe
 WINDRES  = windres.exe
-OBJ      = main.o general.o menu.o source.o nota.o filehandler.o meja.o mejaTesting.o
-LINKOBJ  = main.o general.o menu.o source.o nota.o filehandler.o meja.o mejaTesting.o
+OBJ      = main.o general.o source.o nota.o filehandler.o
+LINKOBJ  = main.o general.o source.o nota.o filehandler.o
 LIBS     = -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib" -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc
 INCS     = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
 CXXINCS  = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++"
@@ -30,9 +30,6 @@ main.o: main.c
 general.o: general.c
 	$(CC) -c general.c -o general.o $(CFLAGS)
 
-menu.o: menu.c
-	$(CC) -c menu.c -o menu.o $(CFLAGS)
-
 source.o: source.c
 	$(CC) -c source.c -o source.o $(CFLAGS)
 
@@ -41,9 +38,3 @@ nota.o: nota.c
 
 filehandler.o: filehandler.c
 	$(CC) -c filehandler.c -o filehandler.o $(CFLAGS)
-
-meja.o: meja.c
-	$(CC) -c meja.c -o meja.o $(CFLAGS)
-
-mejaTesting.o: mejaTesting.c
-	$(CC) -c mejaTesting.c -o mejaTesting.o $(CFLAGS)

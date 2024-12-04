@@ -5,19 +5,41 @@
 #include <time.h>
 
 #define STATIC_FILE "statis.bin"
-#define NOTA_FILE "nota.bin"
+//#define NOTA_FILE "nota.bin"
 #define JUMLAH_MEJA 20
+#define FILENAME "nomor_nota.txt"
+
+#define MENU_PESANAN { \
+    {1, "Grilled Sandwich", 40900}, \
+    {2, "Granola", 36800}, \
+    {3, "Croissant", 30100}, \
+    {4, "Caesar Salad", 25900}, \
+    {5, "Carbonara", 35800}, \
+    {6, "Chicken Wings", 40800}, \
+    {7, "Signature Fried Rice", 45900}, \
+    {8, "Mineral Water", 10500}, \
+    {9, "Signature Tea", 30900}, \
+    {10, "Oolong Rain Tea", 25900}, \
+    {11, "Me-Espresso", 37800}, \
+    {12, "Mochalatte", 36900}, \
+    {13, "Lattearth", 37900}, \
+    {14, "Koomboocha", 32900} \
+}
+
+typedef char string[100];
+
+extern int MEJA[20];
 
 typedef struct{
 	float omset;
-	
-	// STATISTIK LOAD DARI FILE
+	int ID[14];
 } Statis;
 
-// ADT UTAMA ---------------------------------------------------------------------------------------------------
-
-// DATA TYPES
-typedef char string[100];
+typedef struct{
+    int id;
+    string nama;
+    float harga;
+} Menu;
 
 typedef struct Child* AddressChild;
 typedef struct Parent* AddressParent;
@@ -58,88 +80,57 @@ typedef struct {
     AddressParent firstParent;
 } Multilist;
 
-// DEKLARASI FUNGSI UTAMA
-void createEmpty(Multilist *L); // SOURCE.C
-bool isEmpty(Multilist L); // SOURCE.C
+// SOURCE.C
+void createEmpty(Multilist *L); 
+bool isEmpty(Multilist L); 
+DataParent makeDataParent(int nomor, string tanggal, int meja); 
+AddressParent alokasiParent(DataParent data); 
+AddressParent findParent(Multilist L, int nomorNota); 
+void insertFirstParent(Multilist *L, DataParent data); 
+void insertLastParent(Multilist *L, DataParent data); 
+void deleteParent(Multilist *L, int nomorNota); 
+DataChild makeDataChild(string nama, int jumlah, float harga); 
+AddressChild alokasiChild(DataChild data); 
+void insertFirstChild(Multilist L, int nomorNota, DataChild data); 
+void insertLastChild(Multilist L, int nomorNota, DataChild data); 
+void deleteChild(Multilist *L, int nomorNota, string namaItem); 
 
-// DEKLARASI FUNGSI PARENT (NOTA)
-DataParent makeDataParent(int nomor, string tanggal, int meja); // SOURCE.C
-AddressParent alokasiParent(DataParent data); // SOURCE.C
-AddressParent findParent(Multilist L, int nomorNota); // SOURCE.C
-
-void insertFirstParent(Multilist *L, DataParent data); // SOURCE.C
-void insertLastParent(Multilist *L, DataParent data); // SOURCE.C
-void deleteParent(Multilist *L, int nomorNota); // SOURCE.C
-
-// DEKLARASI FUNGSI CHILD (ITEM PESANAN)
-DataChild makeDataChild(string nama, int jumlah, float harga); // SOURCE.C
-AddressChild alokasiChild(DataChild data); // SOURCE.C
-
-void insertFirstChild(Multilist L, int nomorNota, DataChild data); // SOURCE.C
-void insertLastChild(Multilist L, int nomorNota, DataChild data); // SOURCE.C
-void deleteChild(Multilist *L, int nomorNota, string namaItem); // SOURCE.C
-
-// FUNGSI OPERASI NOTA
-void mergeNota(Multilist *L, Multilist *L2); // NOTA.C
-void splitNota(Multilist *L, int nomorNota, int jumlahSplit); // NOTA.C
-void prosesPayment(Multilist *Kasir, Multilist *Dapur); // NOTA.C
-void updateTotalPembelian(AddressParent nota); // NOTA.C
-AddressChild findChild(AddressParent nota, string namaItem); // NOTA.C
-void moveAllItems(AddressParent source, AddressParent destination); // NOTA.C
-void updateNota(Multilist *Kasir, Multilist *Dapur); // NOTA.C
+// NOTA.C
+void mergeNota(Multilist *L, Multilist *L2); 
+void splitNota(Multilist *L, int nomorNota, int jumlahSplit); 
+void prosesPayment(Multilist *Kasir, Multilist *Dapur); 
+void updateTotalPembelian(AddressParent nota); 
+AddressChild findChild(AddressParent nota, string namaItem); 
+void moveAllItems(AddressParent source, AddressParent destination); 
+void updateNota(Multilist *Kasir, Multilist *Dapur); 
 
 // FUNGSI LAPORAN
-void hitungOmzet(Multilist L, float *totalOmzet); // NOTA.C
-void cariItemTerlaris(Multilist L); // NOTA.C
-void printNota(AddressParent nota); // GENERAL.C
-void printAllNota(Multilist L); // GENERAL.C
+void cariItemTerlaris(Multilist L); 
 
-// FUNGSI BONUS (FILE HANDLING)
-void saveToFile(Multilist L); // FILEHANDLER.C
-void loadFromFile(Multilist *L); // FILEHANDLER.C
-void saveStatis(Statis *data); // FILEHANDLER.C
-void loadStatis(Statis *data); // FILE HANDLER.C
+// GENERAL.C
+void printNota(AddressParent nota);
+void printAllNota(Multilist L); 
+void printNotaAktif(Multilist Nota); 
+void printPilih(Multilist Nota);
+void logoASCII(); 
+void getLocalTime(int *day, int *month, int *year); 
+void showMenu(char *picker, string user); 
+void showTools(char *picker, string user); 
+void color(string cname); 
+void printMEJA(); 
+bool isMEJAFull(int MEJA[]); 
+bool isMEJAEmpty(int MEJA); 
+int getNomorNota(); 
+void saveCounter(int counter); 
+int readCounter(); 
+void tampilkanMenu(); 
+void inputPesanan(Multilist *Kasir, Multilist *Dapur, string tanggal);
+void preBoot();
+void drawProgressBar(int current, int total, int width);
 
-// FUNGSI UI
-void logoASCII(); // GENERAL.C
-void getLocalTime(int *day, int *month, int *year); // GENERAL.C
-void showMenu(char *picker, string user); // GENERAL.C
-void showTools(char *picker, string user); // GENERAL.C
-
-// END OF ADT UTAMA ---------------------------------------------------------------------------------------------
-
-
-// ADT MENU --------------------------------------------------------------------------------------------------
-#define FILENAME "nomor_nota.txt"
-
-typedef struct{
-    int id;
-    string nama;
-    float harga;
-} Menu;
-
-#define MENU_PESANAN { \
-    {1, "Grilled Sandwich", 40900}, \
-    {2, "Granola", 36800}, \
-    {3, "Croissant", 30100}, \
-    {4, "Caesar Salad", 25900}, \
-    {5, "Carbonara", 35800}, \
-    {6, "Chicken Wings", 40800}, \
-    {7, "Signature Fried Rice", 45900}, \
-    {8, "Mineral Water", 10500}, \
-    {9, "Signature Tea", 30900}, \
-    {10, "Oolong Rain Tea", 25900}, \
-    {11, "Me-Espresso", 37800}, \
-    {12, "Mochalatte", 36900}, \
-    {13, "Lattearth", 37900}, \
-    {14, "Koomboocha", 32900} \
-}
-
-// DECLARASI
-int getNomorNota(); // MENU.C
-void saveCounter(int counter); // MENU.C
-int readCounter(); // MENU.C
-void tampilkanMenu(); // MENU.C
-void inputPesanan(Multilist *Kasir, Multilist *Dapur, string tanggal); // MENU.C
-// END ADT MENU ------------------------------------------------------------------------------------------------
+// FILEHANDLER.C
+void saveToFile(Multilist L);
+void loadFromFile(Multilist *L); 
+void saveStatis(Statis *data);
+void loadStatis(Statis *data);
 
