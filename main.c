@@ -143,6 +143,7 @@ int main(void) {
                 
                 if(confirm == 'y'){
                 	saveToFile(Kasir);
+                	saveToFile(Dapur);
                 	saveStatis(&Stat);
 					ShutdownMessage();
                 	exit(0);

@@ -87,7 +87,7 @@ void prosesPayment(Multilist *Kasir, Multilist *Dapur) {
 			
 			MEJA[alamatNotaKasir->dataParent.nomorMeja-1] = 0;
 			alamatNotaKasir->dataParent.status = false;
-			alamatNotaDapur->dataParent.status = false;
+//			alamatNotaDapur->dataParent.status = false;
 		}
 		
 	}

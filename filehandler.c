@@ -33,7 +33,7 @@ void saveToFile(Multilist list)
     }
 
     fclose(file);
-    printf("\n[*] Data berhasil disimpan ke file %s.\n", NOTA_FILE);
+    printf("\n\t[*] Data berhasil disimpan ke file %s.\n", NOTA_FILE);
 }
 
 void loadFromFile(Multilist* list)
