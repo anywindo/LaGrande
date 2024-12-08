@@ -18,22 +18,42 @@ void deleteUser();
 int validateCredentials(char *username, char *password);
 void console();
 void firstBoot();
+bool isEmptyUserdata();
 
 // END ADT LOGIN -----------------------------------------------------------------------------------------------
 void registerUser() {
     printf("\n [PAGE: Registrasi User]\n");
     char username[MAX_USERNAME];
     char password[MAX_PASSWORD];
+    char fileUsername[MAX_USERNAME];
+    char filePassword[MAX_PASSWORD];
 
     printf("\n [>] Enter username: ");
-    fflush(stdin); gets(username);
+    fflush(stdin);
+    gets(username);
 
     printf(" [>] Enter password: ");
-    fflush(stdin); gets(password);
-	
-    FILE *file = fopen(DATA_FILE, "a");
+    fflush(stdin);
+    gets(password);
+
+    FILE *file = fopen(DATA_FILE, "r");
     if (file == NULL) {
-        printf("\n\t[!] Error opening file!");
+        printf("\n\t[!] Error opening file for checking!\n");
+        return;
+    }
+
+    while (fscanf(file, "%s %s", fileUsername, filePassword) != EOF) {
+        if (strcmp(username, fileUsername) == 0) {
+            fclose(file);
+            printf("\n\t[!] Username '%s' sudah terdaftar. Tidak dapat menambahkan user yang sama.\n", username);
+            return;
+        }
+    }
+    fclose(file);
+
+    file = fopen(DATA_FILE, "a");
+    if (file == NULL) {
+        printf("\n\t[!] Error opening file for writing!\n");
         return;
     }
 
@@ -42,6 +62,7 @@ void registerUser() {
 
     printf("\n\t[+] Sukses menambahkan user!\n");
 }
+
 
 void loginUser() {
 	system("cls"); firstBoot();
@@ -127,19 +148,35 @@ void adminManagement(){
 
         switch(menu){
             case 1:
+            	if(isEmptyUserdata()){
+            		printf("\n [!] Tidak ada data di userdata! lakukan first boot terlebih dahulu!");
+            		break;
+				}
                 viewUsers();
                 break;
             case 2:
+            	if(isEmptyUserdata()){
+            		printf("\n [!] Tidak ada data di userdata! lakukan first boot terlebih dahulu!");
+            		break;
+				}
                 registerUser();
                 break;
             case 3:
+            	if(isEmptyUserdata()){
+            		printf("\n [!] Tidak ada data di userdata! lakukan first boot terlebih dahulu!");
+            		break;
+				}
                 deleteUser();
                 break;
             case 4:
+            	if(isEmptyUserdata()){
+            		printf("\n [!] Tidak ada data di userdata! lakukan first boot terlebih dahulu!");
+            		break;
+				}
             	printf("\n\t[?] Apakah Anda ingin menghapus data tersimpan?\n\t[*] Data ini meliputi nota.bin dan statis.bin\n\n\t[>] Konfirmasi (y/n): ");
             	char confirm; scanf(" %c", &confirm);
 				
-				if(confirm == 'y')
+				if(confirm == 'y' || confirm == 'Y')
 				{
 					resetNota();
 					resetStatis();
@@ -148,12 +185,26 @@ void adminManagement(){
 					printf("\n\t[*] Tidak jadi delete data.");
             	break;
             case 5:
+            	if(isEmptyUserdata()){
+            		printf("\n [!] Tidak ada data di userdata! lakukan first boot terlebih dahulu!");
+            		break;
+				}
                 adminAsUser = true;
                 return;
             case 6:
+            	if(isEmptyUserdata()){
+            		printf("\n [!] Tidak ada data di userdata! lakukan first boot terlebih dahulu!");
+            		break;
+				}
             	console();
             	break;
             case 0:
+            	if(isEmptyUserdata())
+            	{
+			        printf("\n\t[!] No users found in userdata.txt.");
+			        printf("\n\t[*] Exiting admin session...");
+			        exit(1);
+			    }
                 printf("\n\t[*] Exiting admin session..."); Sleep(50);
 				printf("\n\t[>] Press again to exit as admin.");
                 break;
@@ -190,16 +241,57 @@ void deleteUser() {
     char filePassword[MAX_PASSWORD];
     int found = 0;
 
-    printf("\n [*] Username untuk dihapus: ");
-    fflush(stdin); gets(username);
-
     FILE *file = fopen(DATA_FILE, "r");
+    if (file == NULL) {
+        printf("\n\t[!] Error opening user data file!\n");
+        return;
+    }
+
+    printf("\n- Daftar User:\n");
+    while (fscanf(file, "%s %s", fileUsername, filePassword) != EOF) {
+        printf("- %s\n", fileUsername);
+    }
+    fclose(file);
+
+    printf("\n [*] Username untuk dihapus: ");
+    fflush(stdin);
+    gets(username);
+
+    file = fopen(DATA_FILE, "r");
     FILE *tempFile = fopen("temp.txt", "w");
 
-    if (file == NULL || tempFile == NULL)
-    {
-        printf("\n\t[!] Error processing request!");
+    if (file == NULL || tempFile == NULL) {
+        printf("\n\t[!] Error processing request!\n");
         return;
+    }
+
+    if (strcmpi(username, "admin") == 0) {
+        char confirmation;
+        printf("\n [*] Anda memilih untuk menghapus semua data pengguna. Apakah Anda yakin? (y/n): ");
+        fflush(stdin);
+        scanf(" %c", &confirmation);
+
+        if (confirmation == 'y' || confirmation == 'Y') 
+        {
+            fclose(file);
+            fclose(tempFile);
+
+            tempFile = fopen(DATA_FILE, "w");
+            if (tempFile != NULL) {
+                fclose(tempFile);
+            }
+            resetNota();
+            resetStatis();
+            printf("\n\t[-] Semua user dan data telah dihapus. \n\t[*] Konfigurasi first boot akan dijalankan di sesi selanjutnya.\n");
+            return;
+        } 
+        else 
+        {
+            fclose(file);
+            fclose(tempFile);
+            printf("\n\t[!] Operasi dibatalkan.\n");
+            return;
+        }
     }
 
     while (fscanf(file, "%s %s", fileUsername, filePassword) != EOF)
@@ -241,7 +333,7 @@ void console(){
 		if(strcmpi(input, "cls") == 0)
 		goto con;
 	} while (1);
-	printf("\n> Press again to exit console session.");
+	printf("\nadmin@LaGrande > Press again to exit console session.");
 }
 
 void firstBoot() {
@@ -267,4 +359,24 @@ void firstBoot() {
     } else {
         fclose(file);
     }
+}
+
+bool isEmptyUserdata()
+{
+    FILE *file = fopen("userdata.txt", "r");
+    if(file == NULL)
+    {
+        printf("\n\t[!] Error: Could not open userdata.txt.");
+        exit(2);
+    }
+
+    string buffer;
+    if(fscanf(file, "%s", buffer) == EOF)
+    {
+        fclose(file);
+        return true;
+    }
+
+    fclose(file);
+    return false;
 }
