@@ -3,6 +3,7 @@
 #include <string.h>
 #include <stdbool.h>
 #include <time.h>
+#include <windows.h>
 
 #define STATIC_FILE "statis.bin"
 #define NOTA_FILE "nota.bin"
@@ -99,7 +100,7 @@ void deleteChild(Multilist *L, int nomorNota, string namaItem);
 
 // NOTA.C
 void mergeNota(Multilist *L, Multilist *L2); 
-void splitNota(Multilist *L, int nomorNota, int jumlahSplit); 
+void splitNota(Multilist *L, Multilist *L2);
 void prosesPayment(Multilist *Kasir, Multilist *Dapur); 
 void updateTotalPembelian(AddressParent nota); 
 AddressChild findChild(AddressParent nota, string namaItem); 
@@ -130,10 +131,17 @@ void inputPesanan(Multilist *Kasir, Multilist *Dapur, string tanggal);
 void preBoot();
 void drawProgressBar(int current, int total, int width);
 void ShutdownMessage();
+void gotoxy(int x, int y);
+HWND WINAPI GetConsoleWindowNT();
+bool integrityCheck();
+void printCenterText(char *message);
 
 // FILEHANDLER.C
 void saveToFile(Multilist L);
 void loadFromFile(Multilist *L); 
 void saveStatis(Statis *data);
 void loadStatis(Statis *data);
+void resetNota();
+void resetStatis();
+
 

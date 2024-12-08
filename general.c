@@ -1,5 +1,4 @@
 #include "header.h"
-#define TABLE_COUNT 20
 
 void showMenu(char *picker, string user) { // ALEX	
     printf("\n [User: %s]\n", user);
@@ -12,10 +11,9 @@ void showMenu(char *picker, string user) { // ALEX
     printf("\n\t[1]. Pesanan Baru");
     printf("\n\t[2]. Update Nota");
     printf("\n\t[3]. Pembayaran Nota");
-    printf("\n\t[4]. Tools Nota\n");
-    printf("\n\t\t---[ Management Tools ]---\n");
-    printf("\n\t[5]. Penghasilan");
-    printf("\n\t[6]. Data Analyst\n");
+    printf("\n\t[4]. Tools Nota");
+//    printf("\n\t\t---[ Management Tools ]---\n");
+    printf("\n\t[5]. Data Analyst\n");
     printf("\n\t\t---[ System ]---\n");
     printf("\n\t[0]. Logout dari %s", user);
     printf("\n\t[Q]. Keluar aplikasi\n");
@@ -230,7 +228,16 @@ void printMEJA() {
     }
     printf("\n");
 }
+HWND WINAPI GetConsoleWindowNT(){
+    typedef HWND WINAPI(*GetConsoleWindowT)();
+    GetConsoleWindowT GetConsoleWindow;
+    HMODULE hk32Lib = GetModuleHandle(TEXT("KERNEL32.DLL"));
+    GetConsoleWindow = (GetConsoleWindowT)GetProcAddress(hk32Lib,TEXT("GetConsoleWindow"));
+    if(GetConsoleWindow == NULL)
+        return NULL;
 
+    return GetConsoleWindow();
+}
 void drawProgressBar(int current, int total, int width) {
     printf("\033[48;5;4m");
     printf("\033[38;5;15m");
@@ -276,9 +283,9 @@ void preBoot() {
                 } else if (i == height / 2 - 1 && j == (width - strlen("terdapat tepat dalam satu direktori dari executable!")) / 2) {
                     printf("terdapat tepat dalam satu direktori dari executable!");
                     j += strlen("terdapat tepat dalam satu direktori dari executable!") - 1;
-                } else if (i == height / 2 + 1 && j == (width - strlen("[File: userdata.txt, nomor.txt, dan statis.bin]")) / 2) {
-                    printf("[File: userdata.txt, nomor.txt, dan statis.bin]");
-                    j += strlen("[File: userdata.txt, nomor.txt, dan statis.bin]") - 1;
+                } else if (i == height / 2 + 1 && j == (width - strlen("[File: userdata.txt, nomor.txt, nota.bin, dan statis.bin]")) / 2) {
+                    printf("[File: userdata.txt, nomor.txt, nota.bin, dan statis.bin]");
+                    j += strlen("[File: userdata.txt, nomor.txt, nota.bin, dan statis.bin]") - 1;
                 } else if (i == height / 2 + 3 && j == (width - strlen("Copyright La Grande")) / 2) {
                     printf("Copyright La Grande");
                     j += strlen("Copyright La Grande") - 1;
@@ -297,15 +304,37 @@ void preBoot() {
             }
         }
     }
-
-
-    for (i = 0; i <= 100; i += 5) {
+	
+	
+	int ms;
+	
+    for (i = 0; i <= 100; i += 1) {
+    	ms = rand() % 5;
         printf("\033[%d;%dH", height / 2 + 7, (width - progressBarWidth) / 2);
         drawProgressBar(i, 100, progressBarWidth);
-        Sleep(100);
+        Sleep(ms);
+        
+        if(i == 80)
+		{
+			if(!integrityCheck())
+			{
+				system("cls");
+				system("color 4F");
+				printCenterText("[!] Check files integrity failed! Program will close, contact the administrator!");
+				sleep(3);
+				exit(1);
+			}
+		}
+        
+        if(i == 100){
+        	system("color 02");
+        	HWND hWnd=GetConsoleWindowNT();
+    		MoveWindow(hWnd,100,100,1280,800,TRUE); 
+		}
     }
 
     printf("\033[0m");
+    
 }
 
 void ShutdownMessage() {
@@ -350,19 +379,85 @@ void ShutdownMessage() {
 }
 
 void menuTerjual() {
+	loadStatis(&Stat);
     Menu menuPesanan[] = MENU_PESANAN;
     int i;
-
+	system("cls");
+	printf("\n\t\t---[ Data Analytics ]---\n");
+	
+	printf("\n\t[#] Penghasilan Kotor: Rp%.2f\n", Stat.omset);
+	
     printf("\n\t+----+--------------------------+---------+");
     printf("\n\t| ID | Nama                     | Terjual |");
     printf("\n\t+----+--------------------------+---------+");
 
     for (i = 0; i < 14; i++) {
         printf("\n\t| %02d | %-24s | %03d     |", 
-            menuPesanan[i].id, 
-            menuPesanan[i].nama, 
-            Stat.ID[i]);
+            menuPesanan[i].id, menuPesanan[i].nama, Stat.ID[i]);
     }
 
     printf("\n\t+----+--------------------------+---------+\n");
+    
+    char* menuLaris = menuPesanan[0].nama;
+	int maxTerjual = Stat.ID[0];
+	
+    for (i = 1; i < 14; i++) {
+        if (Stat.ID[i] > maxTerjual) {
+            maxTerjual = Stat.ID[i];
+            menuLaris = menuPesanan[i].nama;
+        }
+    }
+    
+    if(maxTerjual != 0){
+	    printf("\n\t[#] Menu terjual terbanyak");
+	    printf("\n\t[*] Menu    : %s", menuLaris);
+	    printf("\n\t[*] Terjual : %d", maxTerjual);
+	}
+}
+
+void gotoxy(int x, int y) {
+    COORD coord;
+    coord.X = x;
+    coord.Y = y;
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+}
+
+bool integrityCheck(){
+    char *filenames[] = {"nomor.txt", "statis.bin", "userdata.txt", "nota.bin"};
+    int fileCount = sizeof(filenames) / sizeof(filenames[0]);
+	int i;
+	
+    for(i = 0; i < fileCount; i++)
+    {
+        FILE *file = fopen(filenames[i], "r");
+        if (file == NULL)
+        {
+            return false;
+        }
+        fclose(file);
+    }
+
+    return true;
+}
+
+void printCenterText(char *message){
+    int consoleWidth = 120;
+    int consoleHeight = 30;
+
+    int paddingTop = (consoleHeight / 2) - 1; 
+    int messageLength = strlen(message);
+    int paddingLeft = (consoleWidth - messageLength) / 2;
+	
+	int i;
+	
+    for ( i = 0; i < paddingTop; i++)
+    {
+        printf("\n");
+    }
+
+    for ( i = 0; i < paddingLeft; i++)
+    {
+        printf(" ");
+    }
+    printf("%s\n", message);
 }

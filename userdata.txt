@@ -1,5 +1,3 @@
-admin admin
-user password
-a a
-' '
-MAMA THATBURNS
+admin lagrande
+kasir1 user1
+dulapeep potaxie

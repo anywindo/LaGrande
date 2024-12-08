@@ -20,19 +20,21 @@ int main(void) {
     sprintf(tanggal, "%02d-%02d-%04d", day, month, year);
     createEmpty(&Dapur);
     createEmpty(&Kasir);
-    loadStatis(&Stat);
-    loadFromFile(&Kasir);
         
     // MAIN PROG
     preBoot();
     
     login:
     loginUser(); // LOGIN
-
+	
+	loadStatis(&Stat);
+    loadFromFile(&Kasir);
+        
     // OUTER LOOP
     do{
     	mainMenu:
     	system("cls");
+    	system("color 0F");
         printf("\n [Date: %02d-%02d-%04d]", day,month,year);
         showMenu(&menu, userLogged);
         
@@ -45,7 +47,7 @@ int main(void) {
 
 			case '2': // UPDATE
             	if(isEmpty(Kasir)){
-            		printf("\n [!] Nota Kosong");
+            		printf("\n\t[!] Nota Kosong");
             		break;
 				}
 				
@@ -54,7 +56,7 @@ int main(void) {
 			
 			case '3': // PEMBAYARAN - SELESAI
             	if(isEmpty(Kasir)){
-            		printf("\n [!] Nota Kosong");
+            		printf("\n\t[!] Nota Kosong");
             		break;
 				}
 				
@@ -114,12 +116,7 @@ int main(void) {
 			
 			// MANAGEMENT
 			
-			case '5': // PENGHASILAN
-				loadStatis(&Stat);
-				printf("\n\t[*] Pengahasilan: Rp%.2f", Stat.omset);
-			break;
-			
-			case '6': // ANALYSIS
+			case '5': // ANALYSIS
 				menuTerjual();
 			break;
 

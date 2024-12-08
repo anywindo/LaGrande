@@ -99,7 +99,9 @@ void deleteParent(Multilist *L, int nomorNota) {
                 L->firstParent = P->next;
             else
                 prev->next = P->next;
-            free(P);
+            
+			MEJA[P->dataParent.nomorMeja-1] = 0;
+			free(P);
         }
     }
 }

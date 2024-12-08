@@ -16,16 +16,10 @@ void adminManagement();
 void viewUsers();
 void deleteUser();
 int validateCredentials(char *username, char *password);
-void trimNewline(char *str);
+void console();
+void firstBoot();
+
 // END ADT LOGIN -----------------------------------------------------------------------------------------------
-
-void trimNewline(char *str) {
-    size_t len = strlen(str);
-    if (len > 0 && str[len - 1] == '\n') {
-        str[len - 1] = '\0';
-    }
-}
-
 void registerUser() {
     printf("\n [PAGE: Registrasi User]\n");
     char username[MAX_USERNAME];
@@ -33,12 +27,10 @@ void registerUser() {
 
     printf("\n [>] Enter username: ");
     fflush(stdin); gets(username);
-    trimNewline(username);
 
     printf(" [>] Enter password: ");
     fflush(stdin); gets(password);
-    trimNewline(password);
-
+	
     FILE *file = fopen(DATA_FILE, "a");
     if (file == NULL) {
         printf("\n\t[!] Error opening file!");
@@ -52,20 +44,19 @@ void registerUser() {
 }
 
 void loginUser() {
+	system("cls"); firstBoot();
     int attempts = 5;
     char username[MAX_USERNAME];
     char password[MAX_PASSWORD];
-
+	
     while (attempts > 0) {
-        system("cls");
+        system("cls"); system("color 0F");
         printf("\n\t [PAGE: Login User] - [Attempt: %d]\n", attempts);
         logoASCII();
         
         printf("\n\t [>] Masukkan username: "); fflush(stdin); gets(username);
-        trimNewline(username);
 
         printf("\t [>] Masukkan password: "); fflush(stdin); gets(password);
-        trimNewline(password);
 
         if (validateCredentials(username, password) && strcmp(username, "admin") == 0) {
             strcpy(userLogged, username);
@@ -74,16 +65,22 @@ void loginUser() {
                 return;
         } else if (validateCredentials(username, password)) {
             strcpy(userLogged, username);
+            system("color 20");
             printf("\n\t [*] Login berhasil! Selamat datang, %s.\n", username);
+            Sleep(500);
             return;
         } else {
+        	system("color 4F");
             printf("\n\t [!] Username atau password salah!\n");
             attempts--;
         }
         getch();
     }
 
+	system("color 4F");
     printf("\n\t [!] Anda telah mencoba login sebanyak 5 kali. Program akan keluar.\n");
+    system("color 0F");
+    ShutdownMessage();
     exit(0);
 }
 
@@ -96,7 +93,7 @@ int validateCredentials(char *username, char *password) {
         printf("\n\t[!] Error opening file!\n");
         return 0;
     }
-
+		
     while (fscanf(file, "%s %s", fileUsername, filePassword) != EOF)
     {
         if (strcmp(username, fileUsername) == 0 && strcmp(password, filePassword) == 0)
@@ -115,12 +112,15 @@ void adminManagement(){
 
     do {
         system("cls");
+        system("color 1F");
         printf("\n [PAGE: Admin Management] - [User: admin]\n");
         printf("\n\t--- POS Management ---\n");
         printf("\n [1]. Tampilkan semua user");
         printf("\n [2]. Tambahkan user baru");
-        printf("\n [3]. Hapus user\n");
-        printf("\n [4]. Admin sebagai kasir");
+        printf("\n [3]. Hapus user");
+        printf("\n [4]. Hapus data tersimpan\n");
+        printf("\n [5]. Admin sebagai kasir");
+        printf("\n [6]. System Console\n");
         printf("\n [0]. Logout\n");
         printf("\n >> "); scanf("%d", &menu);
 
@@ -135,10 +135,26 @@ void adminManagement(){
                 deleteUser();
                 break;
             case 4:
+            	printf("\n\t[?] Apakah Anda ingin menghapus data tersimpan?\n\t[*] Data ini meliputi nota.bin dan statis.bin\n\n\t[>] Konfirmasi (y/n): ");
+            	char confirm; scanf(" %c", &confirm);
+				
+				if(confirm == 'y')
+				{
+					resetNota();
+					resetStatis();
+				}
+				else
+					printf("\n\t[*] Tidak jadi delete data.");
+            	break;
+            case 5:
                 adminAsUser = true;
                 return;
+            case 6:
+            	console();
+            	break;
             case 0:
-                printf("\n\t[*] Exiting admin session...\n");
+                printf("\n\t[*] Exiting admin session..."); Sleep(50);
+				printf("\n\t[>] Press again to exit as admin.");
                 break;
             default:
                 printf("\n\t[!] Menu tidak ada!");
@@ -146,6 +162,7 @@ void adminManagement(){
         }
         if(menu != 0) getch();
     } while (menu != 0);
+    return;
 }
 
 void viewUsers() {
@@ -174,7 +191,6 @@ void deleteUser() {
 
     printf("\n [*] Username untuk dihapus: ");
     fflush(stdin); gets(username);
-    trimNewline(username);
 
     FILE *file = fopen(DATA_FILE, "r");
     FILE *tempFile = fopen("temp.txt", "w");
@@ -203,4 +219,51 @@ void deleteUser() {
         printf("\n\t[-] User '%s' telah dihapus.\n", username);
     else
         printf("\n\t[!] User '%s' tidak ditemukan!", username);
+}
+
+void console(){
+	char input[200];
+	system("cls");
+	system("color 0F");
+	
+	con:
+	printf("\n\t[#] System Console - [type 'exit' to end session]\n");
+	do{
+		printf("\nadmin@LaGrande > ");
+		fflush(stdin); gets(input);
+		
+		if(strcmpi(input, "exit") == 0)
+		break;
+		
+		system(input);
+		
+		if(strcmpi(input, "cls") == 0)
+		goto con;
+	} while (1);
+	printf("\n> Press again to exit console session.");
+}
+
+void firstBoot() {
+    FILE *file = fopen(DATA_FILE, "r");
+    if (file == NULL || fgetc(file) == EOF) {
+        fclose(file);
+        char adminPassword[MAX_PASSWORD];
+		
+        printf("\n [!] No users found in the system. Creating default 'admin' user.");
+        printf("\n [>] Enter password for 'admin': ");
+        fflush(stdin); gets(adminPassword);
+
+        file = fopen(DATA_FILE, "w");
+        if (file == NULL) {
+            printf("\n [!] Error creating user data file.");
+            exit(1);
+        }
+
+        fprintf(file, "admin %s\n", adminPassword);
+        fclose(file);
+
+        printf("\n [*] Default 'admin' user created successfully.\n");
+    } else {
+        fclose(file);
+    }
 }

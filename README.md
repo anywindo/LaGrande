@@ -73,25 +73,6 @@ Multilist
 | Nota | 1:N | Item Menu |
 | Nota | 1:1 | Nota Gabungan |
 
-## 🎮 Penggunaan
-
-### Membuat Nota Baru
-```c
-DataParent dataNota = makeDataParent(1, "18-03-2024", 5);
-insertFirstParent(&sistemRestoran, dataNota);
-```
-
-### Menambah Item Menu
-```c
-DataChild dataItem = makeDataChild("Pasta Carbonara", 2, 15.99);
-insertLastChild(sistemRestoran, 1, dataItem);
-```
-
-### Memproses Pembayaran
-```c
-prosesPayment(&sistemRestoran, nomorNota, jumlahBayar);
-```
-
 ## 📸 Tangkapan Layar
 
 <details>
@@ -99,33 +80,8 @@ prosesPayment(&sistemRestoran, nomorNota, jumlahBayar);
 
 ### Menu Utama
 ```
-===== Restoran La Grande =====
-1. Buat Nota Baru
-2. Tambah Item Menu
-3. Proses Pembayaran
-4. Lihat Laporan
-5. Keluar
-```
 
-### Manajemen Nota
-```
-Nota #1234
-Meja: 5
-Item:
-- 2x Pasta Carbonara   Rp159.900
-- 1x Caesar Salad      Rp129.900
-Total: Rp289.800
-```
 </details>
-
-## 🤝 Kontribusi
-Kami menyambut kontribusi! Silakan ikuti langkah-langkah berikut:
-
-1. Fork repositori
-2. Buat branch fitur Anda
-3. Commit perubahan Anda
-4. Push ke branch
-5. Buat Pull Request
 
 ## 📄 Lisensi
 Proyek ini dilisensikan di bawah Lisensi MIT - lihat file [LISENSI](LISENSI) untuk detail.
