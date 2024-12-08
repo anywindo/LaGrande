@@ -154,3 +154,33 @@ int getNomorNota()
     saveCounter(counter);
     return counter;
 }
+
+void resetNota(){
+    FILE *file = fopen("nota.bin", "wb");
+
+    if (file == NULL) {
+        printf("\n\t[!] Gagal membuka file nota.bin untuk reset.\n");
+        return;
+    }
+
+    fclose(file);
+    printf("\n\t[+] File nota.bin berhasil direset.");
+}
+
+void resetStatis(){
+    FILE *file = fopen("statis.bin", "wb");
+
+    if (file == NULL) {
+        printf("\n\t[!] Gagal membuka file statis.bin untuk reset.\n");
+        return;
+    }
+
+    Statis dataStatis = {0};
+    dataStatis.omset = 0.0;
+    memset(dataStatis.ID, 0, sizeof(dataStatis.ID));
+
+    fwrite(&dataStatis, sizeof(Statis), 1, file);
+
+    fclose(file);
+    printf("\n\t[+] File statis.bin berhasil direset.");
+}
