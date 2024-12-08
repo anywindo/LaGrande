@@ -113,12 +113,12 @@ void printPilih(Multilist Nota){
 }
 
 void logoASCII() { // ALEX
-    printf("\n\t\t\t\t\t\t\t\t       .-.                  .-.                       .      \n");
-    printf("\t\t\t\t\t\t\t\t      / (_)          .--.`-'                         /       \n");
-    printf("\t\t\t\t\t\t\t\t     /      .-.     /  (_;    ).--..-.  .  .-.  .-../   .-.  \n");
-    printf("\t\t\t\t\t\t\t\t    /      (  |    /         /    (  |   )/   )(   /  ./.-'_ \n");
-    printf("\t\t\t\t\t\t\t\t .-/.    .-.`-'-' (     --;-/      `-'-''/   (  `-'-..(__.'  \n");
-    printf("\t\t\t\t\t\t\t\t(_/ `-._.          `.___.'                    `-              \n");
+    printf("\n\t\t\t\t\t\t\t       .-.                  .-.                       .      \n");
+    printf("\t\t\t\t\t\t\t      / (_)          .--.`-'                         /       \n");
+    printf("\t\t\t\t\t\t\t     /      .-.     /  (_;    ).--..-.  .  .-.  .-../   .-.  \n");
+    printf("\t\t\t\t\t\t\t    /      (  |    /         /    (  |   )/   )(   /  ./.-'_ \n");
+    printf("\t\t\t\t\t\t\t .-/.    .-.`-'-' (     --;-/      `-'-''/   (  `-'-..(__.'  \n");
+    printf("\t\t\t\t\t\t\t(_/ `-._.          `.___.'                    `-              \n");
 }
 
 void getLocalTime(int *day, int *month, int *year){ // ALEX
