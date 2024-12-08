@@ -53,7 +53,8 @@ void loginUser() {
         system("cls"); system("color 0F");
         printf("\n\t [PAGE: Login User] - [Attempt: %d]\n", attempts);
         logoASCII();
-        
+        gotoxy(0,3);
+        printf("\n\t ---[ System Login ]---\n");
         printf("\n\t [>] Masukkan username: "); fflush(stdin); gets(username);
 
         printf("\t [>] Masukkan password: "); fflush(stdin); gets(password);

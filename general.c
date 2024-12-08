@@ -2,18 +2,20 @@
 
 void showMenu(char *picker, string user) { // ALEX	
     printf("\n [User: %s]\n", user);
-    logoASCII();
+    
+    gotoxy(50,4);
+	logoASCII();
+	gotoxy(0,4);
 	
 	printf("\n\t\t---[ Meja Tersedia ]---\n");
 	printMEJA();
-	
     printf("\n\t\t---[ Point-of-Sales ]---\n");
     printf("\n\t[1]. Pesanan Baru");
     printf("\n\t[2]. Update Nota");
     printf("\n\t[3]. Pembayaran Nota");
     printf("\n\t[4]. Tools Nota");
 //    printf("\n\t\t---[ Management Tools ]---\n");
-    printf("\n\t[5]. Data Analyst\n");
+    printf("\n\t[5]. Data Analytics\n");
     printf("\n\t\t---[ System ]---\n");
     printf("\n\t[0]. Logout dari %s", user);
     printf("\n\t[Q]. Keluar aplikasi\n");
@@ -24,6 +26,7 @@ void showTools(char *picker, string user) { // ALEX
 	printf("\n [User: %s]\n", user);
 	logoASCII();
 	
+	gotoxy(0,3);
 	printf("\n\t\t---[ Tools ]---\n");
 	printf("\n\t[1]. Cari Nota");
     printf("\n\t[2]. Lihat Semua Nota");
@@ -110,12 +113,12 @@ void printPilih(Multilist Nota){
 }
 
 void logoASCII() { // ALEX
-    printf("\n\t\t\t\t       .-.                  .-.                       .      \n");
-    printf("\t\t\t\t      / (_)          .--.`-'                         /       \n");
-    printf("\t\t\t\t     /      .-.     /  (_;    ).--..-.  .  .-.  .-../   .-.  \n");
-    printf("\t\t\t\t    /      (  |    /         /    (  |   )/   )(   /  ./.-'_ \n");
-    printf("\t\t\t\t .-/.    .-.`-'-' (     --;-/      `-'-''/   (  `-'-..(__.'  \n");
-    printf("\t\t\t\t(_/ `-._.          `.___.'                    `-              \n");
+    printf("\n\t\t\t\t\t\t\t\t       .-.                  .-.                       .      \n");
+    printf("\t\t\t\t\t\t\t\t      / (_)          .--.`-'                         /       \n");
+    printf("\t\t\t\t\t\t\t\t     /      .-.     /  (_;    ).--..-.  .  .-.  .-../   .-.  \n");
+    printf("\t\t\t\t\t\t\t\t    /      (  |    /         /    (  |   )/   )(   /  ./.-'_ \n");
+    printf("\t\t\t\t\t\t\t\t .-/.    .-.`-'-' (     --;-/      `-'-''/   (  `-'-..(__.'  \n");
+    printf("\t\t\t\t\t\t\t\t(_/ `-._.          `.___.'                    `-              \n");
 }
 
 void getLocalTime(int *day, int *month, int *year){ // ALEX
@@ -329,7 +332,7 @@ void preBoot() {
         if(i == 100){
         	system("color 02");
         	HWND hWnd=GetConsoleWindowNT();
-    		MoveWindow(hWnd,100,100,1280,800,TRUE); 
+    		MoveWindow(hWnd,380,200,1280,800,TRUE); 
 		}
     }
 

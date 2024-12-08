@@ -67,6 +67,7 @@ int main(void) {
 				do{
 	            	system("cls");
 	            	printf("\n [Date: %02d-%02d-%04d]", day,month,year);
+	            	
 	            	showTools(&menu, userLogged);
 	            	
 	            	switch (menu) {
